@@ -1,0 +1,12 @@
+<div class="step-box">
+    User Id:
+    <input [(ngModel)]="userId" type="text">
+    <button class="btn-start" (click)="startExecution()">Start</button>
+    <div *ngIf="executionStart">
+        <div *ngFor="let step of stepList" class="step-body">
+            <span>{{step.name}}</span>
+            <input class="checkbox" (change)="updateProgress($event, step)" type="checkbox">
+        </div>
+        <!-- <button class="btn-submit" (click)="submit()">Submit</button> -->
+    </div>
+</div>

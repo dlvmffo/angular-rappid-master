@@ -1,0 +1,21 @@
+<!-- <button class="btn-task-collection" (click)="createNewTaskCollection()">Add New Task Collection</button>
+<div id="task-collection"></div>
+<div class="task-input" [id]="taskCollectionDivId">
+    <span class="task-col-head">User{{taskCollectionId + 1}}</span>
+    <div class="task-form" id="task-form">
+        <input type="text" [(ngModel)]="taskName" placeholder="Create New Task">
+        <button class="btn" id="btn" (click)="createTask()">+</button>
+    </div>
+    <div id="main"></div>
+    <div id="paper" class="paper"></div>
+</div> -->
+
+<div class="task-form task" id="task-form">
+    <h3 style="margin-bottom: 20px;">Create New Tasks</h3>
+    <input type="text" class="inputtext" [(ngModel)]="taskName" placeholder="Create New Task">
+    <button class="btn" id="btn" (click)="createTask()">+</button>
+    <!-- <input type="button" class="btn" id="btn" (click)="createTask()" value="+"> -->
+    <div *ngFor="let task of taskList; let i = index">
+    {{i+1}}. {{task}}
+    </div>
+</div>

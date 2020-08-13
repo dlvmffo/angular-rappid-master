@@ -1,0 +1,27 @@
+.step-body {
+    border: 1px solid gray;
+    padding: 10px 10px 10px 10px;
+    margin-top: 20px;
+}
+
+.step-box {
+    margin-top: 80px;
+    margin-left: 80px;
+    width: 800px;
+    height: 80px;
+}
+
+.checkbox {
+    margin-left: 750px;
+    height: 20px;
+    width: 20px;
+}
+
+.btn-start {
+    margin-left: 80px;
+}
+
+.btn-submit {
+    margin-left: 734px;
+    margin-top: 22px;
+}

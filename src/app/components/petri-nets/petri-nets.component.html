@@ -1,0 +1,33 @@
+<div id="paper"></div>
+<br>
+
+<div>
+    <input type="radio" name="condition" value="1" (change)="onItemChange($event.target.value)">Serial
+    <input type="radio" name="condition" value="2" (change)="onItemChange($event.target.value)">Conditional
+    <input type="radio" name="condition" value="3" (change)="onItemChange($event.target.value)">Parallel
+    <br>
+
+    <div *ngIf="radioButtonValue == 1">
+        <br>
+        <div>
+            <input type="text" [(ngModel)]="stepName" placeholder="Add Step Name">
+            <button (click)="AddPlaceTransition()">Add Serial Step</button>
+            <button (click)="fireTransition(20, 20)">Simulate</button>
+        </div>
+    </div>
+    <br>
+
+    <div *ngIf="radioButtonValue == 2">
+        <input type="text" [(ngModel)]="conditionName" placeholder="Add Condition"><br>
+        <input type="text" [(ngModel)]="stepName" placeholder="Add First Condition">
+        <input type="text" [(ngModel)]="conditionalStepName" placeholder="Add Second Condition">
+        <button (click)="AddPlaceTransition()">Add Second Condition</button>
+    </div>
+    <br>
+
+    <div *ngIf="radioButtonValue == 3">
+        <input type="text" [(ngModel)]="stepName" placeholder="Add Parallel Task">
+        <input type="text" [(ngModel)]="conditionalStepName" placeholder="Add Parallel Task">
+        <button (click)="AddPlaceTransition()">Add Parallel Task</button>
+    </div>
+</div>
