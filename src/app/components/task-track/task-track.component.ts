@@ -316,7 +316,7 @@ export class TaskTrackComponent implements OnInit, AfterViewInit {
                         if (a.progressStep == s.id) {
                             this.draw_circle(x + xInc, y + yInc, "token");
                         } else {
-                            this.draw_circle(x + xInc, y + yInc, s.id);
+                            this.draw_circle(x + xInc, y + yInc, s.stepSequence);
                         }
                         if (j !== step.length - 1) {
                             this.canvas_arrow(context, x+xInc+30, y+yInc, x+xInc+120, y+yInc);   
