@@ -31,6 +31,14 @@ export class StepExecutionComponent implements OnInit {
     loadSteps() {
         this.stepService.getAllSteps().subscribe((step) => {
             this.stepList = step;
+            this.stepList.forEach(s => {
+                if (s.stepSequence.split(".")[1] == "1") {
+                    s.splitSequence = "Split A";
+                }
+                if (s.stepSequence.split(".")[1] == "2") {
+                    s.splitSequence = "Split B";
+                }
+            })
         })
     }
 

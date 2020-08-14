@@ -7,6 +7,7 @@
             <div class="and-or-split">
                 <span *ngIf="step.isAndSplit"><i>And Split:</i></span>
                 <span *ngIf="step.isOrSplit"><i>Or Split:</i></span>
+                <span *ngIf="step.splitSequence !== undefined" class="split-sequence"><b>{{step.splitSequence}}</b></span>
             </div>
             <span class="step-sequence"><b>{{step.stepSequence}}</b></span>
             <span>{{step.name}}</span>

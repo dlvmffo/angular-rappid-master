@@ -13,4 +13,6 @@ export class Step {
     public isCompleted: boolean;
     public isOrSplit: boolean;
     public isAndSplit: boolean;
+
+    public splitSequence: string;
 }
