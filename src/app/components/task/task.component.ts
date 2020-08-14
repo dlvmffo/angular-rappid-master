@@ -67,6 +67,7 @@ export class TaskComponent implements OnInit, AfterViewChecked {
         let parent = document.getElementById("parent");
         if ((parent as any).checked) {
             this.step.stepId = Math.floor(this.taskList[this.taskList.length -1].stepNumber) + 1;
+            this.step.parentId = 0;
         } else {
             this.step.parentId =this.taskList[this.taskList.length -1].stepNumber;
             this.step.stepId = this.taskList[this.taskList.length -1].stepNumber + 0.1;
