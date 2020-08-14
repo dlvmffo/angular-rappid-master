@@ -74,6 +74,7 @@ export class TaskComponent implements OnInit, AfterViewChecked {
         if ((parent as any).checked) {
             this.step.stepId = Math.floor(this.taskList[this.taskList.length - 1].stepId) + 1;
             this.step.isOrSplit, this.step.isAndSplit = false;
+            this.step.stepSequenceCounter = 1;
         } else {
             if ((orSplit as any).checked) { this.step.isOrSplit = true; }
             if ((andSplit as any).checked) { this.step.isAndSplit = true; }
@@ -92,7 +93,6 @@ export class TaskComponent implements OnInit, AfterViewChecked {
                 let newTaskList = [];
                 let currentStep = this.step.stepSequence.split('.')[0];
                 this.taskList.forEach(ta => {
-                    debugger;
                     if (ta.stepSequence.split('.')[0] == currentStep) {
                         newTaskList.push(ta);
                     }
@@ -108,7 +108,6 @@ export class TaskComponent implements OnInit, AfterViewChecked {
         }
 
         this.taskList.push({ taskName: this.taskName, stepId: this.step.stepId, stepSequence: this.step.stepSequence });
-        console.log(this.taskList)
         
         this.step.name = this.taskName;
         this.taskName = "";
