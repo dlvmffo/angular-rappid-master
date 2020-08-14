@@ -6,10 +6,10 @@ export class Activity {
 
 export class Step {
     public id: number;
+    public stepSequence: string;
     public stepId: number;
     public name: string;
     public isCompleted: boolean;
-    public parentId: number;
     public isOrSplit: boolean;
     public isAndSplit: boolean;
 }

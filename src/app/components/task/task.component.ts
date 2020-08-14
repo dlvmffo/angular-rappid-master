@@ -7,7 +7,8 @@ declare var joint: any;
 declare var V: any;
 
 interface TaskList {
-    stepNumber: number,
+    stepId: number,
+    stepNumber: string,
     taskName: string;
 }
 
@@ -46,8 +47,9 @@ export class TaskComponent implements OnInit, AfterViewChecked {
         this.step = <Step>{};
         this.loadActivities();
         this.taskList = [{
+            stepId: 0,
             taskName: "",
-            stepNumber: 0
+            stepNumber: ""
         }];
     }
 
@@ -66,14 +68,13 @@ export class TaskComponent implements OnInit, AfterViewChecked {
     public createTask() {
         let parent = document.getElementById("parent");
         if ((parent as any).checked) {
-            this.step.stepId = Math.floor(this.taskList[this.taskList.length -1].stepNumber) + 1;
-            this.step.parentId = 0;
+            this.step.stepId = Math.floor(this.taskList[this.taskList.length -1].stepId) + 1;
         } else {
-            this.step.parentId =this.taskList[this.taskList.length -1].stepNumber;
-            this.step.stepId = this.taskList[this.taskList.length -1].stepNumber + 0.1;
+            // this.step.parentId =this.taskList[this.taskList.length -1].stepNumber;
+            this.step.stepId = this.taskList[this.taskList.length -1].stepId + 0.1;
             this.step.stepId = parseFloat(this.step.stepId.toFixed(2));
         }
-        this.taskList.push({taskName: this.taskName, stepNumber: this.step.stepId});
+        this.taskList.push({taskName: this.taskName, stepId: this.step.stepId, stepNumber: this.step.stepSequence});
         this.step.name = this.taskName;
         this.taskName = "";
         this.step.isCompleted = false;
@@ -124,6 +125,9 @@ export class TaskComponent implements OnInit, AfterViewChecked {
         }
         if ((value == "andSplit" || value == "orSplit") && checked) {
             (document.getElementById("parent") as any).checked = false;
+        }
+        if (value == "splitAgain" && checked) {
+            
         }
     }
 }

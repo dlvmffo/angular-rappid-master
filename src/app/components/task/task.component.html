@@ -5,6 +5,7 @@
         <input type="checkbox" id="parent" value="parent" checked class="parent-node" (change)="parentNodeCheck($event)">ParentNode
         <input type="radio" name="andOrSplit" id="andSplit" value="andSplit" class="parent-node" (change)="parentNodeCheck($event)">And Split
         <input type="radio" name="andOrSplit" id="orSplit" value="orSplit" class="parent-node" (change)="parentNodeCheck($event)">Or Split
+        <input type="checkbox" class="parent-node split-again" id="splitagain" (change)="parentNodeCheck($event)">Split Again
     </div>
     
     <br>
@@ -12,6 +13,6 @@
     <button class="btn" id="btn" (click)="createTask()">+</button>
    
     <div *ngFor="let task of taskList; let i = index">
-        <span *ngIf="i !== 0">{{task.stepNumber}}. {{task.taskName}}</span>
+        <span *ngIf="i !== 0">{{task.stepId}}. {{task.taskName}}</span>
     </div>
 </div>
