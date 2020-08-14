@@ -3,12 +3,13 @@ import { eventNames } from 'process';
 import { ActivityService } from 'src/app/services/activity.service';
 import { StepService } from 'src/app/services/step.service';
 import { Activity, Step } from 'src/app/models/activity.model';
+import { debug } from 'console';
 declare var joint: any;
 declare var V: any;
 
 interface TaskList {
     stepId: number,
-    stepNumber: string,
+    stepSequence: string,
     taskName: string;
 }
 
@@ -49,8 +50,9 @@ export class TaskComponent implements OnInit, AfterViewChecked {
         this.taskList = [{
             stepId: 0,
             taskName: "",
-            stepNumber: ""
+            stepSequence: ""
         }];
+        this.step.stepSequenceCounter = 1;
     }
 
     ngAfterViewChecked() {
@@ -68,13 +70,28 @@ export class TaskComponent implements OnInit, AfterViewChecked {
     public createTask() {
         let parent = document.getElementById("parent");
         if ((parent as any).checked) {
-            this.step.stepId = Math.floor(this.taskList[this.taskList.length -1].stepId) + 1;
+            this.step.stepId = Math.floor(this.taskList[this.taskList.length - 1].stepId) + 1;
         } else {
             // this.step.parentId =this.taskList[this.taskList.length -1].stepNumber;
-            this.step.stepId = this.taskList[this.taskList.length -1].stepId + 0.1;
+            this.step.stepId = this.taskList[this.taskList.length - 1].stepId + 0.1;
             this.step.stepId = parseFloat(this.step.stepId.toFixed(2));
         }
-        this.taskList.push({taskName: this.taskName, stepId: this.step.stepId, stepNumber: this.step.stepSequence});
+        if ((this.step.stepId).toString().includes('.')) {
+            let stepIdToSequence = (this.step.stepId).toString().split('.')[1];
+            parseInt(stepIdToSequence) + 1;
+
+            var splitagain = document.getElementById("splitagain");
+            if ((splitagain as any).checked == true) {  
+                this.step.stepSequenceCounter = this.step.stepSequenceCounter + 1;
+            }
+            
+            this.step.stepSequence = this.step.stepId.toString().split(".")[0] + "." + this.step.stepSequenceCounter + "." + stepIdToSequence;
+        } else {
+            this.step.stepSequence = this.step.stepId.toString();
+        }
+
+        this.taskList.push({ taskName: this.taskName, stepId: this.step.stepId, stepSequence: this.step.stepSequence });
+        
         this.step.name = this.taskName;
         this.taskName = "";
         this.step.isCompleted = false;
@@ -118,7 +135,7 @@ export class TaskComponent implements OnInit, AfterViewChecked {
                 this.step.isAndSplit = false;
                 this.step.isOrSplit = true;
             }
-        } 
+        }
         if (value == "parent" && checked) {
             (document.getElementById("andSplit") as any).checked = false;
             (document.getElementById("orSplit") as any).checked = false;
@@ -127,7 +144,7 @@ export class TaskComponent implements OnInit, AfterViewChecked {
             (document.getElementById("parent") as any).checked = false;
         }
         if (value == "splitAgain" && checked) {
-            
+
         }
     }
 }

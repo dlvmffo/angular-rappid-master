@@ -7,6 +7,7 @@ export class Activity {
 export class Step {
     public id: number;
     public stepSequence: string;
+    public stepSequenceCounter: number;
     public stepId: number;
     public name: string;
     public isCompleted: boolean;

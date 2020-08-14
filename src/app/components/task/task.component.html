@@ -13,6 +13,6 @@
     <button class="btn" id="btn" (click)="createTask()">+</button>
    
     <div *ngFor="let task of taskList; let i = index">
-        <span *ngIf="i !== 0">{{task.stepId}}. {{task.taskName}}</span>
+        <span *ngIf="i !== 0">{{task.stepSequence}}. {{task.taskName}}</span>
     </div>
 </div>
