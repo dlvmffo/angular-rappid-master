@@ -65,3 +65,13 @@ input {
 .inputtext {
     width: 1000px
 }
+
+.parent-node {
+    height: 13px;
+    width: 22px;
+}
+
+.conditions {
+    margin-top: 10px;
+    margin-right: 20px;
+}
