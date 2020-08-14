@@ -6,6 +6,11 @@ import { Activity, Step } from 'src/app/models/activity.model';
 declare var joint: any;
 declare var V: any;
 
+interface TaskList {
+    stepNumber: number,
+    taskName: string;
+}
+
 @Component({
     templateUrl: './task.component.html',
     styleUrls: ['./task.component.css']
@@ -25,7 +30,7 @@ export class TaskComponent implements OnInit, AfterViewChecked {
     public stepList: Array<Step>;
     public step: Step;
 
-    public taskList: Array<string>;
+    public taskList: Array<TaskList>;
 
     public counter: number;
 
@@ -40,8 +45,10 @@ export class TaskComponent implements OnInit, AfterViewChecked {
         this.activity = <Activity>{};
         this.step = <Step>{};
         this.loadActivities();
-        this.taskList = [];
-        this.counter = 0;
+        this.taskList = [{
+            taskName: "",
+            stepNumber: 0
+        }];
     }
 
     ngAfterViewChecked() {
@@ -57,45 +64,21 @@ export class TaskComponent implements OnInit, AfterViewChecked {
     }
 
     public createTask() {
-        this.step.stepId = this.counter + 1;
-        this.taskList.push(this.taskName);
+        let parent = document.getElementById("parent");
+        if ((parent as any).checked) {
+            this.step.stepId = Math.floor(this.taskList[this.taskList.length -1].stepNumber) + 1;
+        } else {
+            this.step.parentId =this.taskList[this.taskList.length -1].stepNumber;
+            this.step.stepId = this.taskList[this.taskList.length -1].stepNumber + 0.1;
+            this.step.stepId = parseFloat(this.step.stepId.toFixed(2));
+        }
+        this.taskList.push({taskName: this.taskName, stepNumber: this.step.stepId});
         this.step.name = this.taskName;
         this.taskName = "";
         this.step.isCompleted = false;
         this.stepService.createStep(this.step).subscribe(step => {
             this.loadActivities();
         })
-        this.checkboxId = this.checkboxId + 1;
-        this.checkboxIdArray.push(this.checkboxId);
-        var div = document.createElement("div");
-        // div.style.height = "30px";
-        div.style.background = "white";
-        div.style.color = "black";
-        div.style.fontSize = "20px";
-        div.style.padding = "10px 10px 10px 10px";
-        div.style.border = "3px solid gray";
-        div.style.marginTop = "30px";
-        // div.style.marginLeft = "200px";
-        div.className += "task-block";
-        div.id = this.checkboxId.toString();
-        div.innerHTML = this.taskName;
-
-        document.getElementById("main").appendChild(div)
-
-        var checkbox = document.createElement('input');
-        checkbox.type = "checkbox";
-        checkbox.name = "name";
-        checkbox.value = "value";
-        checkbox.id = this.checkboxId.toString();
-        checkbox.className += "checkbox-block";
-        checkbox.style.width = "50px";
-        checkbox.style.height = "40px";
-        checkbox.style.marginRight = "30px";
-        checkbox.style.marginTop = "-48px";
-        checkbox.style.cssFloat = "right";
-
-        document.getElementById("main").appendChild(checkbox);
-
         this.taskName = "";
     }
 
@@ -123,24 +106,22 @@ export class TaskComponent implements OnInit, AfterViewChecked {
     parentNodeCheck(event) {
         let value = event.currentTarget.value;
         let checked = event.currentTarget.checked;
-        if (value == "parent" && checked == false) {
+        if (value == "parent" && !checked) {
             $("#andSplit").trigger('click');
-            this.step.parentId = this.counter;
-            this.step.stepId = this.counter + 0.1;
-            if (value == "andSplit" && checked == true) {
+            if (value == "andSplit" && checked) {
                 this.step.isAndSplit = true;
                 this.step.isOrSplit = false;
             }
-            if (value == "orSplit" && checked == true) {
+            if (value == "orSplit" && checked) {
                 this.step.isAndSplit = false;
                 this.step.isOrSplit = true;
             }
         } 
-        if (value == "parent" && checked == true) {
+        if (value == "parent" && checked) {
             (document.getElementById("andSplit") as any).checked = false;
             (document.getElementById("orSplit") as any).checked = false;
         }
-        if ((value == "andSplit" || value == "orSplit") && checked == true) {
+        if ((value == "andSplit" || value == "orSplit") && checked) {
             (document.getElementById("parent") as any).checked = false;
         }
     }
