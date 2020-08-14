@@ -81,8 +81,20 @@ export class TaskComponent implements OnInit, AfterViewChecked {
             parseInt(stepIdToSequence) + 1;
 
             var splitagain = document.getElementById("splitagain");
-            if ((splitagain as any).checked == true) {  
+            if ((splitagain as any).checked == true) {
                 this.step.stepSequenceCounter = this.step.stepSequenceCounter + 1;
+                (splitagain as any).checked = false;
+                let newTaskList = [];
+                let currentStep = this.step.stepSequence.split('.')[0];
+                this.taskList.forEach(ta => {
+                    debugger;
+                    if (ta.stepSequence.split('.')[0] == currentStep) {
+                        newTaskList.push(ta);
+                    }
+                })
+                let newTaskListCount = newTaskList.length - 1;
+                this.step.stepId = this.step.stepId - (newTaskListCount/10);
+                stepIdToSequence = "1";
             }
             
             this.step.stepSequence = this.step.stepId.toString().split(".")[0] + "." + this.step.stepSequenceCounter + "." + stepIdToSequence;
@@ -91,6 +103,7 @@ export class TaskComponent implements OnInit, AfterViewChecked {
         }
 
         this.taskList.push({ taskName: this.taskName, stepId: this.step.stepId, stepSequence: this.step.stepSequence });
+        console.log(this.taskList)
         
         this.step.name = this.taskName;
         this.taskName = "";
