@@ -69,9 +69,14 @@ export class TaskComponent implements OnInit, AfterViewChecked {
 
     public createTask() {
         let parent = document.getElementById("parent");
+        let orSplit = document.getElementById("orSplit");
+        let andSplit = document.getElementById("andSplit");
         if ((parent as any).checked) {
             this.step.stepId = Math.floor(this.taskList[this.taskList.length - 1].stepId) + 1;
+            this.step.isOrSplit, this.step.isAndSplit = false;
         } else {
+            if ((orSplit as any).checked) { this.step.isOrSplit = true; }
+            if ((andSplit as any).checked) { this.step.isAndSplit = true; }
             // this.step.parentId =this.taskList[this.taskList.length -1].stepNumber;
             this.step.stepId = this.taskList[this.taskList.length - 1].stepId + 0.1;
             this.step.stepId = parseFloat(this.step.stepId.toFixed(2));
@@ -152,6 +157,7 @@ export class TaskComponent implements OnInit, AfterViewChecked {
         if (value == "parent" && checked) {
             (document.getElementById("andSplit") as any).checked = false;
             (document.getElementById("orSplit") as any).checked = false;
+            this.step.isAndSplit, this.step.isOrSplit = false;
         }
         if ((value == "andSplit" || value == "orSplit") && checked) {
             (document.getElementById("parent") as any).checked = false;
