@@ -19,9 +19,22 @@
 
 .btn-start {
     margin-left: 80px;
+    background-color: transparent;
 }
 
 .btn-submit {
     margin-left: 734px;
     margin-top: 22px;
+}
+
+.step-sequence {
+    margin-right: 20px;
+}
+
+.and-or-split {
+    margin-right: 20px;
+}
+
+.split-sequence {
+    margin-left: 20px;
 }

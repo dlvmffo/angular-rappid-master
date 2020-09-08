@@ -5,19 +5,32 @@ import { Http, Headers, Response } from '@angular/http';
 import { Step } from '../models/activity.model';
 import { Observable } from 'rxjs';
 import { map, filter, switchMap } from 'rxjs/operators';
+import * as signalR from "@aspnet/signalr";
 
 const API_URL = environment.apiUrl;
 
 @Injectable()
 export class StepService {
+    private hubConnection: signalR.HubConnection
 
     constructor(
         private http: Http
     ) {
     }
 
+    // public startConnection = () => {
+    //     this.hubConnection = new signalR.HubConnectionBuilder()
+    //                             .withUrl(this.getUrlWithDomain('api/Steps'))
+    //                             .build();
+    //     this.hubConnection
+    //       .start()
+    //       .then(() => console.log('Connection started'))
+    //       .catch(err => console.log('Error while starting connection: ' + err))
+    //   }
+
     // API: GET /todos
     public getAllSteps = (): Observable<Step[]> => {
+        // this.startConnection();
         return this.http.get(this.getUrlWithDomain('api/Steps'),
             {
                 headers: new Headers({

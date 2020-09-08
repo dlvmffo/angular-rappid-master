@@ -31,6 +31,14 @@ export class StepExecutionComponent implements OnInit {
     loadSteps() {
         this.stepService.getAllSteps().subscribe((step) => {
             this.stepList = step;
+            this.stepList.forEach(s => {
+                if (s.stepSequence.split(".")[1] == "1") {
+                    s.splitSequence = "Split 1";
+                }
+                if (s.stepSequence.split(".")[1] == "2") {
+                    s.splitSequence = "Split 2";
+                }
+            })
         })
     }
 
@@ -38,14 +46,19 @@ export class StepExecutionComponent implements OnInit {
         this.executionStart = true;
         this.activity.name = this.userId;
         this.activity.progressStep = 0;
-        this.activityService.createActivity(this.activity).subscribe((act) => {
-            this.activity.id = act.id;
-        });
+        this.activityService.getAllActivities().subscribe(activities => {
+            let activeId = activities.find(x => x.name == this.activity.name);
+            this.activity.id = activeId.id;
+            // this.activityService.udpateActivity(this.activity).subscribe((act) => {
+            //     this.activity.id = act.id;
+            // });
+        })
     }
 
     updateProgress(event, step) {
         if (event.currentTarget.checked) {
             this.activity.progressStep = step.id;
+            this.activity.progressTreeState = step.stepSequence;
             this.step = step;
             this.step.isCompleted = true;
             this.stepService.udpateStep(this.step).subscribe(step => {})
