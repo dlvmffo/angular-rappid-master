@@ -49,9 +49,6 @@ export class StepExecutionComponent implements OnInit {
         this.activityService.getAllActivities().subscribe(activities => {
             let activeId = activities.find(x => x.name == this.activity.name);
             this.activity.id = activeId.id;
-            // this.activityService.udpateActivity(this.activity).subscribe((act) => {
-            //     this.activity.id = act.id;
-            // });
         })
     }
 

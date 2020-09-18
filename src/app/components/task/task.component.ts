@@ -1,8 +1,8 @@
 import { Component, OnInit, ChangeDetectorRef, AfterViewChecked } from '@angular/core';
-import { eventNames } from 'process';
 import { ActivityService } from 'src/app/services/activity.service';
 import { StepService } from 'src/app/services/step.service';
-import { Activity, Step } from 'src/app/models/activity.model';
+import { WorkflowService } from 'src/app/services/workflow.service';
+import { Activity, Step, Workflow } from 'src/app/models/activity.model';
 declare var joint: any;
 declare var V: any;
 
@@ -32,10 +32,15 @@ export class TaskComponent implements OnInit, AfterViewChecked {
     public step: Step;
 
     public taskList: Array<TaskList>;
+    public workflow: Workflow;
 
     public counter: number;
+    public showSteps: boolean;
 
-    constructor(private cd: ChangeDetectorRef, private activityService: ActivityService, private stepService: StepService) {
+    constructor(private cd: ChangeDetectorRef, 
+        private activityService: ActivityService, 
+        private stepService: StepService,
+        private workflowService: WorkflowService) {
     }
 
     ngOnInit() {
@@ -52,6 +57,9 @@ export class TaskComponent implements OnInit, AfterViewChecked {
             stepSequence: ""
         }];
         this.step.stepSequenceCounter = 1;
+        this.workflow = <Workflow>{};
+        this.showSteps = false;
+        this.counter = 1;
     }
 
     ngAfterViewChecked() {
@@ -66,7 +74,14 @@ export class TaskComponent implements OnInit, AfterViewChecked {
         });
     }
 
+    public createWorkflow() {
+        this.workflowService.createWorkflow(this.workflow).subscribe(workflow => {});
+        this.showSteps = true;
+    }
+
     public createTask() {
+        this.step.workflowId = this.counter;
+        this.counter++;
         let parent = document.getElementById("parent");
         let orSplit = document.getElementById("orSplit");
         let andSplit = document.getElementById("andSplit");

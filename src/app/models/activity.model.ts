@@ -7,6 +7,7 @@ export class Activity {
 
 export class Step {
     public id: number;
+    public workflowId: number;
     public stepSequence: string;
     public stepSequenceCounter: number;
     public stepId: number;
@@ -16,4 +17,9 @@ export class Step {
     public isAndSplit: boolean;
 
     public splitSequence: string;
+}
+
+export class Workflow {
+    public id: number;
+    public name: string;
 }

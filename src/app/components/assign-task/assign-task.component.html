@@ -1,0 +1,9 @@
+<div class="task-main-block">
+    <h3>Available Workflows:</h3>
+    <div *ngFor="let workflow of workflowList; let i=index">
+        <div class="wf-block">
+            <span class="margin-right">{{i+1}}</span>
+            <span class="workflow-name">{{workflow.name}}</span>
+        </div>
+    </div>
+</div>

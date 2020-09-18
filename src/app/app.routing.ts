@@ -5,6 +5,7 @@ import { PetriNetsComponent } from "./components/petri-nets/petri-nets.component
 import { TaskComponent } from './components/task/task.component';
 import { StepExecutionComponent } from './components/step-execution/step-execution.component';
 import { TaskTrackComponent } from './components/task-track/task-track.component';
+import { AssignTaskComponent } from './components/assign-task/assign-task.component';
 
 export const rootRouterConfig: Routes = [
   {
@@ -40,6 +41,11 @@ export const rootRouterConfig: Routes = [
   {
     path: 'task-track',
     component: TaskTrackComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'assign-task',
+    component: AssignTaskComponent,
     pathMatch: 'full'
   }
 ];

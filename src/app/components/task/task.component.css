@@ -35,6 +35,16 @@ input {
     border: 1px solid gray;
 }
 
+.btn-long {
+    height: 34px;
+    width: 200px;
+    /* padding: 10px 10px 10px 10px; */
+    margin-left: 30px;
+    cursor: pointer;
+    border: 1px solid gray;
+    background: transparent;
+}
+
 .btn-text {
     font-size: 30px;
 }
@@ -88,7 +98,7 @@ input {
     margin-right: 20px;
 }
 
-.user-label {
+.margin-right {
     margin-right: 20px;
 }
 
