@@ -5,13 +5,35 @@
     <div *ngIf="executionStart">
         <div *ngFor="let step of stepList" class="step-body">
             <div class="and-or-split">
-                <span *ngIf="step.isAndSplit"><i>And Split:</i></span>
-                <span *ngIf="step.isOrSplit"><i>Or Split:</i></span>
-                <span *ngIf="step.splitSequence !== undefined" class="split-sequence"><b>{{step.splitSequence}}</b></span>
+                <ng-container *ngIf="step.isAndSplit">
+                    <ng-container *ngIf="step.andSplitChosen">
+                        <span class="margin-right" class="step-sequence"><b>{{step.stepSequence}}</b></span>
+                        <i class="margin-right">And Split:</i>
+                        <span *ngIf="step.splitSequence !== undefined" class="split-sequence margin-right"><b>{{step.splitSequence}}</b></span>
+                        <br>
+                        <span>{{step.name}}</span>
+                        <input class="checkbox" (change)="updateProgress($event, step)" type="checkbox">
+                    </ng-container>
+                </ng-container>
+                <ng-container *ngIf="step.isOrSplit">
+                    <span class="step-sequence margin-right"><b>{{step.stepSequence}}</b></span>
+                    <i class="margin-right">Or Split:</i>
+                    <span *ngIf="step.splitSequence !== undefined" class="split-sequence margin-right"><b>{{step.splitSequence}}</b></span>
+                    <span class="margin-right">{{step.orCondition}}</span>
+                    <input type="checkbox" [(ngModel)]="step.orConditionResult">
+                    <br>
+                    <span>{{step.name}}</span>
+                    <input class="checkbox" (change)="updateProgress($event, step)" type="checkbox">
+                </ng-container>
+                
             </div>
-            <span class="step-sequence"><b>{{step.stepSequence}}</b></span>
-            <span>{{step.name}}</span>
-            <input class="checkbox" (change)="updateProgress($event, step)" type="checkbox">
+            <ng-container *ngIf="!step.isAndSplit">
+                <ng-container *ngIf="!step.isOrSplit">
+                    <span class="step-sequence"><b>{{step.stepSequence}}</b></span>
+                    <span>{{step.name}}</span>
+                    <input class="checkbox" (change)="updateProgress($event, step)" type="checkbox">
+                </ng-container>
+            </ng-container>
         </div>
         <!-- <button class="btn-submit" (click)="submit()">Submit</button> -->
     </div>

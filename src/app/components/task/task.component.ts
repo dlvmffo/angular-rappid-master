@@ -80,7 +80,7 @@ export class TaskComponent implements OnInit, AfterViewChecked {
     }
 
     public createTask() {
-        this.step.workflowId = this.counter;
+        this.step.workflowId = 1; //this.counter
         this.counter++;
         let parent = document.getElementById("parent");
         let orSplit = document.getElementById("orSplit");

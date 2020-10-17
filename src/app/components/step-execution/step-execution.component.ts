@@ -47,6 +47,7 @@ export class StepExecutionComponent implements OnInit {
         this.activity.name = this.userId;
         this.activity.progressStep = 0;
         this.activityService.getAllActivities().subscribe(activities => {
+            debugger;
             let activeId = activities.find(x => x.name == this.activity.name);
             this.activity.id = activeId.id;
         })

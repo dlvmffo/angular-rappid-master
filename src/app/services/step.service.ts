@@ -62,9 +62,12 @@ export class StepService {
             }))
     }
 
-    // API: GET /todos/:id
-    public getTodoById(todoId: number) {
-        // will use this.http.get()
+    // API: GET 
+    public getStepById(id: number) {
+        return this.http
+        .get(API_URL + 'api/Steps/' + id).pipe(map(response => {
+            return response.json();
+        }))
     }
 
     public udpateStep(activity: Step): Observable<Step> {

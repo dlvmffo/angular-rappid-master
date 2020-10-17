@@ -1,9 +1,43 @@
 <div class="task-main-block">
-    <h3>Available Workflows:</h3>
-    <div *ngFor="let workflow of workflowList; let i=index">
-        <div class="wf-block">
-            <span class="margin-right">{{i+1}}</span>
-            <span class="workflow-name">{{workflow.name}}</span>
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Available Workflows:</h3>
+            <div *ngFor="let workflow of workflowList; let i=index">
+                <div class="wf-block">
+                    <input class="margin-right" (change)="getWorkflowSteps(workflow.id)" type="radio" name="workflow" id="i"> <span class="choose-workflow" >Choose Workflow</span>
+                    <span class="margin-right">{{i+1}}.</span>
+                    <span class="workflow-name">{{workflow.name}}</span>
+                </div>
+            </div>
+            <div *ngIf="showStep" class="step-box">
+                <h3>Available Steps:</h3>
+                <div *ngFor="let step of stepList" class="step-body">
+                    <span class="margin-right">{{step.stepSequence}}.</span>
+                   
+                    <ng-container *ngIf="step.isAndSplit">
+                        <i class="margin-right">Choose And Split:</i>
+                        <input type="checkbox" [(ngModel)]="step.andSplitChosen" name="andsplit" class="margin-right">
+                    </ng-container>
+
+                    <span class="margin-right">{{step.name}}</span>
+
+                    <div *ngIf="step.isOrSplit">
+                        <i class="margin-right">Or Split:</i>
+                        <label class="margin-right">Or Condition:</label>
+                        <input type="text" [(ngModel)]="step.orCondition">
+                    </div>
+                </div>
+            </div>
         </div>
+        <div class="col-md-6">
+            <h3>Assign Workflow To:</h3>
+            <div *ngFor="let activity of activityList; let i=index">
+                <div class="wf-block">
+                    <input (change)="assignWorkflow()" class="margin-right" type="checkbox" name="workflow" id="i"> <span class="choose-workflow" >Assign Workflow</span>
+                    <span class="margin-right">{{i+1}}.</span>
+                    <span class="workflow-name">{{activity.name}}</span>
+                </div>
+            </div>
+        </div> 
     </div>
 </div>
