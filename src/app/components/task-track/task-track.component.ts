@@ -1,11 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-declare var joint: any;
-declare var V: any;
 import { StepService } from 'src/app/services/step.service';
 import { ActivityService } from 'src/app/services/activity.service';
 import { Step, Activity } from 'src/app/models/activity.model';
-
-import { TempDataStorageService } from 'src/app/services/temp-data-storage.service';
 
 @Component({
     templateUrl: 'task-track.component.html',
@@ -79,14 +75,42 @@ export class TaskTrackComponent implements OnInit {
                 context.font = "11px Arial";
                 context.fillText(a.name, actX, actY);
                 this.stepService.getAllSteps().subscribe(step => {
+                    debugger;
                     step.forEach((s,j) => {
-                        if (a.progressStep == s.id) {
-                            this.draw_circle(x + xInc, y + yInc, "token");
+                        if (s.stepSequence.includes('.')) {
+                            let divisor = s.stepSequence.split(".")[1];
+                            if (divisor == "1") {
+                                if (a.progressStep == s.id) {
+                                    this.draw_circle(x + xInc, y + yInc - 20, "token");
+                                } else {
+                                    this.draw_circle(x + xInc, y + yInc - 20, s.stepSequence);
+                                }
+                                if (j !== step.length - 1) {
+                                    this.canvas_arrow(context, x+xInc+30, y+yInc, x+xInc+265, y+yInc);   
+                                }
+                            } else {
+                                if (a.progressStep == s.id) {
+                                    this.draw_circle(x + xInc - 150, y + yInc + 40, "token");
+                                } else {
+                                    this.draw_circle(x + xInc - 150, y + yInc + 50, s.stepSequence);
+                                }
+                                if (j !== step.length - 1) {
+                                    this.canvas_arrow(context, x+xInc - 120, y+yInc+50, x+xInc+120, y+yInc+10);   
+                                }
+                                if (j !== step.length - 1) {
+                                    this.canvas_arrow(context, x+xInc - 270, y+yInc, x+xInc - 180, y+yInc+50);   
+                                }
+                            }
+                            
                         } else {
-                            this.draw_circle(x + xInc, y + yInc, s.stepSequence);
-                        }
-                        if (j !== step.length - 1) {
-                            this.canvas_arrow(context, x+xInc+30, y+yInc, x+xInc+120, y+yInc);   
+                            if (a.progressStep == s.id) {
+                                this.draw_circle(x + xInc, y + yInc, "token");
+                            } else {
+                                this.draw_circle(x + xInc, y + yInc, s.stepSequence);
+                            }
+                            if (j !== step.length - 1) {
+                                this.canvas_arrow(context, x+xInc+30, y+yInc, x+xInc+120, y+yInc);   
+                            }
                         }
                         xInc = xInc + 150;
                     })
