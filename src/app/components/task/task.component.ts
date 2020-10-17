@@ -27,7 +27,7 @@ export class TaskComponent implements OnInit, AfterViewChecked {
     public checkboxIdArray: any;
 
     public activityList: Array<Activity>;
-    public activity: Activity;
+    public activity: Activity; 
     public stepList: Array<Step>;
     public step: Step;
 
