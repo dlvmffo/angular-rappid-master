@@ -19,11 +19,13 @@ export class AssignTaskComponent implements OnInit {
     public sameAndCondition: boolean;
     public orCondition: string;
 
-    public stepMainBranch;
-    public stepAndFirstBranch;
-    public stepAndSecondBranch;
-    public stepOrFirstBranch;
-    public stepOrSecondBranch;
+    public stepMainBranch: Array<Step>;
+    public stepAndFirstBranch: Array<Step>;
+    public stepAndSecondBranch: Array<Step>;
+    public stepOrFirstBranch: Array<Step>;
+    public stepOrSecondBranch: Array<Step>;
+
+    public assignedActivity: number;
 
     ngOnInit() {
         this.step = <Step>{};
@@ -38,6 +40,8 @@ export class AssignTaskComponent implements OnInit {
         this.stepAndSecondBranch = [];
         this.stepOrFirstBranch = [];
         this.stepOrSecondBranch = [];
+
+        this.assignedActivity = 0;
     }
     constructor(private stepService: StepService, private workflowService: WorkflowService, private activityService: ActivityService){}
 
@@ -83,5 +87,39 @@ export class AssignTaskComponent implements OnInit {
         this.stepList.forEach(steps => {
             this.stepService.udpateStep(steps).subscribe((step) => {})
         })
+    }
+
+    public mainBranchAssign(event) {
+        this.stepMainBranch.forEach(step => {
+            step.activityId = parseInt(event.target.value);
+            this.stepService.udpateStep(step).subscribe();
+        });
+    }
+
+    public andFirstBranchAssign(event) {
+        this.stepAndFirstBranch.forEach(step => {
+            step.activityId = parseInt(event.target.value);
+            this.stepService.udpateStep(step).subscribe();
+        });
+    }
+
+    public andSecondBranchAssign(event) {
+        this.stepAndSecondBranch.forEach(step => {
+            step.activityId = parseInt(event.target.value);
+            this.stepService.udpateStep(step).subscribe();
+        });
+    }
+
+    public orFirstBranchAssign(event) {
+        this.stepOrFirstBranch.forEach(step => {
+            step.activityId = parseInt(event.target.value);
+            this.stepService.udpateStep(step).subscribe();
+        });
+    }
+    public orSecondBranchAssign(event) {
+        this.stepOrSecondBranch.forEach(step => {
+            step.activityId = parseInt(event.target.value);
+            this.stepService.udpateStep(step).subscribe();
+        });
     }
 }
