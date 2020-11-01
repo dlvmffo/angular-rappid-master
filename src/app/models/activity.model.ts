@@ -20,6 +20,7 @@ export class Step {
     public andSplitChosen: boolean;
 
     public splitSequence: string;
+    public activityId: number;
 }
 
 export class Workflow {

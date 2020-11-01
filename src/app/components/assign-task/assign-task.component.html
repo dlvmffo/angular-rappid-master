@@ -1,6 +1,6 @@
 <div class="task-main-block">
-    <div class="row">
-        <div class="col-md-6">
+    <div>
+        <div>
             <h3>Available Workflows:</h3>
             <div *ngFor="let workflow of workflowList; let i=index">
                 <div class="wf-block">
@@ -9,27 +9,101 @@
                     <span class="workflow-name">{{workflow.name}}</span>
                 </div>
             </div>
-            <div *ngIf="showStep" class="step-box">
-                <h3>Available Steps:</h3>
-                <div *ngFor="let step of stepList" class="step-body">
-                    <span class="margin-right">{{step.stepSequence}}.</span>
-                   
-                    <ng-container *ngIf="step.isAndSplit">
-                        <i class="margin-right">Choose And Split:</i>
-                        <input type="checkbox" [(ngModel)]="step.andSplitChosen" name="andsplit" class="margin-right">
-                    </ng-container>
 
-                    <span class="margin-right">{{step.name}}</span>
+            <div class="workflow-assign-block">
+                <div class="row" *ngIf="stepMainBranch.length > 0">
+                    <div class="col-md-6">
+                        <h3>Main Branch</h3>
+                        <div *ngFor="let main of stepMainBranch">
+                            <span>{{main.stepSequence}}</span>
+                            <span>{{main.name}}</span>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Assign To:</h5>
+                        <select class="select-activity">
+                            <option *ngFor="let activity of activityList">{{activity.name}}</option>
+                        </select>
+                    </div>
+                    <br>
+                </div>
+               
+                <hr>
 
-                    <div *ngIf="step.isOrSplit">
-                        <i class="margin-right">Or Split:</i>
-                        <label class="margin-right">Or Condition:</label>
-                        <input type="text" [(ngModel)]="step.orCondition">
+                <div class="row" *ngIf="stepAndFirstBranch.length > 0">
+                    <div class="col-md-6">
+                        <h3>And A-Split</h3>
+                        <div *ngFor="let andFirst of stepAndFirstBranch">
+                            <span>{{andFirst.stepSequence}}</span>
+                            <span>{{andFirst.name}}</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Assign To:</h5>
+                        <select class="select-activity">
+                            <option *ngFor="let activity of activityList">{{activity.name}}</option>
+                        </select>
                     </div>
                 </div>
+
+                <hr>
+
+                <div class="row" *ngIf="stepAndSecondBranch.length > 0">
+                    <div class="col-md-6">
+                        <h3>And B-Split</h3>
+                        <div *ngFor="let andSecond of stepAndSecondBranch">
+                            <span>{{andSecond.stepSequence}}</span>
+                            <span>{{andSecond.name}}</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Assign To:</h5>
+                        <select class="select-activity">
+                            <option *ngFor="let activity of activityList">{{activity.name}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="row" *ngIf="stepOrFirstBranch.length > 0">
+                    <div class="col-md-6">
+                        <h3>Or A-Split</h3>
+                        <div *ngFor="let orFirst of stepOrFirstBranch">
+                            <span>{{orFirst.stepSequence}}</span>
+                            <span>{{orFirst.name}}</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Assign To:</h5>
+                        <select class="select-activity">
+                            <option *ngFor="let activity of activityList">{{activity.name}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="row" *ngIf="stepMainBranch.length > 0">
+                    <div class="col-md-6">
+                        <h3>Or B-Split</h3>
+                        <div *ngFor="let orSecond of stepOrSecondBranch">
+                            <span>{{orSecond.stepSequence}}</span>
+                            <span>{{orSecond.name}}</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Assign To:</h5>
+                        <select class="select-activity">
+                            <option *ngFor="let activity of activityList">{{activity.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <hr>
             </div>
         </div>
-        <div class="col-md-6">
+        <!-- <div class="col-md-6">
             <h3>Assign Workflow To:</h3>
             <div *ngFor="let activity of activityList; let i=index">
                 <div class="wf-block">
@@ -38,6 +112,6 @@
                     <span class="workflow-name">{{activity.name}}</span>
                 </div>
             </div>
-        </div> 
+        </div>  -->
     </div>
 </div>

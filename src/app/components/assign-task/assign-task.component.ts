@@ -19,6 +19,12 @@ export class AssignTaskComponent implements OnInit {
     public sameAndCondition: boolean;
     public orCondition: string;
 
+    public stepMainBranch;
+    public stepAndFirstBranch;
+    public stepAndSecondBranch;
+    public stepOrFirstBranch;
+    public stepOrSecondBranch;
+
     ngOnInit() {
         this.step = <Step>{};
         this.stepList = [];
@@ -26,6 +32,12 @@ export class AssignTaskComponent implements OnInit {
         this.sameOrCondition, this.sameAndCondition = false;
         this.loadWorkflow();
         this.loadActivities();
+
+        this.stepMainBranch = [];
+        this.stepAndFirstBranch = [];
+        this.stepAndSecondBranch = [];
+        this.stepOrFirstBranch = [];
+        this.stepOrSecondBranch = [];
     }
     constructor(private stepService: StepService, private workflowService: WorkflowService, private activityService: ActivityService){}
 
@@ -42,12 +54,27 @@ export class AssignTaskComponent implements OnInit {
     }
 
     public getWorkflowSteps(workflowId) {
-        // this.stepService.getStepById(workflowId).subscribe(steps => {
-        //     this.stepList = steps;
-        //     this.showStep = true;
-        // })
         this.stepService.getAllSteps().subscribe(steps => {
             this.stepList = steps.filter(x => x.workflowId == workflowId);
+            this.stepList.forEach(step => {
+                if (step.isAndSplit) {
+                    if (step.stepSequence.split('.')[1] == '1') {
+                        this.stepAndFirstBranch.push(step);
+                    } else {
+                        this.stepAndSecondBranch.push(step);
+                    }
+                }
+                else if (step.isOrSplit) {
+                    if (step.stepSequence.split('.')[1] == '1') {
+                        this.stepOrFirstBranch.push(step);
+                    } else {
+                        this.stepOrSecondBranch.push(step);
+                    }
+                }
+                else {
+                    this.stepMainBranch.push(step);
+                }
+            })
             this.showStep = true;
         })
     }
