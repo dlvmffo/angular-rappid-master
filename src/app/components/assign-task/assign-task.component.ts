@@ -27,6 +27,9 @@ export class AssignTaskComponent implements OnInit {
 
     public assignedActivity: number;
 
+    public orACondition: string;
+    public orBConditon: string;
+
     ngOnInit() {
         this.step = <Step>{};
         this.stepList = [];
@@ -42,6 +45,9 @@ export class AssignTaskComponent implements OnInit {
         this.stepOrSecondBranch = [];
 
         this.assignedActivity = 0;
+
+        this.orACondition = "";
+        this.orBConditon = "";
     }
     constructor(private stepService: StepService, private workflowService: WorkflowService, private activityService: ActivityService){}
 
@@ -121,5 +127,21 @@ export class AssignTaskComponent implements OnInit {
             step.activityId = parseInt(event.target.value);
             this.stepService.udpateStep(step).subscribe();
         });
+    }
+
+    public orAConditionUpdate() {
+        this.orACondition;
+        this.stepOrFirstBranch.forEach(step => {
+            step.orCondition = this.orACondition;
+            this.stepService.udpateStep(step).subscribe();
+        })
+    }
+
+    public orBConditionUpdate() {
+        this.orBConditon;
+        this.stepOrSecondBranch.forEach(step => {
+            step.orCondition = this.orBConditon;
+            this.stepService.udpateStep(step).subscribe();
+        })
     }
 }

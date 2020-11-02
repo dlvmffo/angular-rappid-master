@@ -87,7 +87,7 @@
                     </div>
                     <div class="col-md-4">
                         <h5>Or A-Split Condition</h5>
-                        <input type="text">
+                        <input type="text" [(ngModel)]="orACondition" (change)="orAConditionUpdate()">
                     </div>
                 </div>
 
@@ -110,7 +110,7 @@
                     </div>
                     <div class="col-md-4">
                         <h5>Or B-Split Condition</h5>
-                        <input type=text>
+                        <input type=text [(ngModel)]="orBConditon" (change)="orBConditionUpdate()">
                     </div>
                 </div>
                 <hr>
