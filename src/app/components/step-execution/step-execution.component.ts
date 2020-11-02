@@ -25,7 +25,7 @@ export class StepExecutionComponent implements OnInit {
         this.step = <Step>{};
         this.userId = "";
         this.executionStart = false;
-        this.loadSteps();
+        // this.loadSteps();
     }
 
     loadSteps() {
@@ -43,13 +43,20 @@ export class StepExecutionComponent implements OnInit {
     }
 
     startExecution() {
+        // this.executionStart = true;
+        // this.activity.name = this.userId;
+        // this.activity.progressStep = 0;
+        // this.activityService.getAllActivities().subscribe(activities => {
+        //     let activeId = activities.find(x => x.name == this.activity.name);
+        //     this.activity.id = activeId.id;
+        // })
         this.executionStart = true;
-        this.activity.name = this.userId;
-        this.activity.progressStep = 0;
-        this.activityService.getAllActivities().subscribe(activities => {
-            debugger;
-            let activeId = activities.find(x => x.name == this.activity.name);
-            this.activity.id = activeId.id;
+        let activityId = 0;
+        this.stepService.getAllSteps().subscribe(step => {
+            this.activityService.getAllActivities().subscribe(activity => {
+                activityId = activity.find(x => x.name == this.userId).id;
+                this.stepList = step.filter(y => y.activityId == activityId);
+            });
         })
     }
 

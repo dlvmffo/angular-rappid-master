@@ -6,7 +6,7 @@
         <div *ngFor="let step of stepList" class="step-body">
             <div class="and-or-split">
                 <ng-container *ngIf="step.isAndSplit">
-                    <ng-container *ngIf="step.andSplitChosen">
+                    <ng-container>
                         <span class="margin-right" class="step-sequence"><b>{{step.stepSequence}}</b></span>
                         <i class="margin-right">And Split:</i>
                         <span *ngIf="step.splitSequence !== undefined" class="split-sequence margin-right"><b>{{step.splitSequence}}</b></span>
