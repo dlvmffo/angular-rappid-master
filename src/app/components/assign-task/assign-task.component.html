@@ -12,17 +12,18 @@
 
             <div class="workflow-assign-block">
                 <div class="row" *ngIf="stepMainBranch.length > 0">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <h3>Main Branch</h3>
                         <div *ngFor="let main of stepMainBranch">
-                            <span>{{main.stepSequence}}</span>
+                            <span>{{main.stepSequence}}</span>)&nbsp;
                             <span>{{main.name}}</span>
                             <br>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <h5>Assign To:</h5>
                         <select class="select-activity" (change)="mainBranchAssign($event)">
+                            <option>Select Assignee</option>
                             <option [value]="activity.id" *ngFor="let activity of activityList">{{activity.name}}</option>
                         </select>
                     </div>
@@ -32,16 +33,17 @@
                 <hr>
 
                 <div class="row" *ngIf="stepAndFirstBranch.length > 0">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <h3>And A-Split</h3>
                         <div *ngFor="let andFirst of stepAndFirstBranch">
-                            <span>{{andFirst.stepSequence}}</span>
+                            <span>{{andFirst.stepSequence}}</span>)&nbsp;
                             <span>{{andFirst.name}}</span>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <h5>Assign To:</h5>
                         <select class="select-activity" (change)="andFirstBranchAssign($event)">
+                            <option>Select Assignee</option>
                             <option [value]="activity.id" *ngFor="let activity of activityList">{{activity.name}}</option>
                         </select>
                     </div>
@@ -50,16 +52,17 @@
                 <hr>
 
                 <div class="row" *ngIf="stepAndSecondBranch.length > 0">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <h3>And B-Split</h3>
                         <div *ngFor="let andSecond of stepAndSecondBranch">
-                            <span>{{andSecond.stepSequence}}</span>
+                            <span>{{andSecond.stepSequence}}</span>)&nbsp;
                             <span>{{andSecond.name}}</span>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <h5>Assign To:</h5>
                         <select class="select-activity" (change)="andSecondBranchAssign($event)">
+                            <option>Select Assignee</option>
                             <option [value]="activity.id" *ngFor="let activity of activityList">{{activity.name}}</option>
                         </select>
                     </div>
@@ -68,36 +71,46 @@
                 <hr>
 
                 <div class="row" *ngIf="stepOrFirstBranch.length > 0">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <h3>Or A-Split</h3>
                         <div *ngFor="let orFirst of stepOrFirstBranch">
-                            <span>{{orFirst.stepSequence}}</span>
+                            <span>{{orFirst.stepSequence}}</span>)&nbsp;
                             <span>{{orFirst.name}}</span>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <h5>Assign To:</h5>
                         <select class="select-activity" (change)="orFirstBranchAssign($event)">
+                            <option>Select Assignee</option>
                             <option [value]="activity.id" *ngFor="let activity of activityList">{{activity.name}}</option>
-                        </select> 
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Or A-Split Condition</h5>
+                        <input type="text">
                     </div>
                 </div>
 
                 <hr>
 
                 <div class="row" *ngIf="stepOrSecondBranch.length > 0">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <h3>Or B-Split</h3>
                         <div *ngFor="let orSecond of stepOrSecondBranch">
-                            <span>{{orSecond.stepSequence}}</span>
+                            <span>{{orSecond.stepSequence}}</span>)&nbsp;
                             <span>{{orSecond.name}}</span>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <h5>Assign To:</h5>
                         <select class="select-activity" (change)="orSecondBranchAssign($event)">
+                            <option>Select Assignee</option>
                             <option [value]="activity.id" *ngFor="let activity of activityList">{{activity.name}}</option>
                         </select>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Or B-Split Condition</h5>
+                        <input type=text>
                     </div>
                 </div>
                 <hr>
