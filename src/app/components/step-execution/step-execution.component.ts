@@ -43,24 +43,22 @@ export class StepExecutionComponent implements OnInit {
     }
 
     startExecution() {
-        // this.executionStart = true;
-        // this.activity.name = this.userId;
-        // this.activity.progressStep = 0;
-        // this.activityService.getAllActivities().subscribe(activities => {
-        //     let activeId = activities.find(x => x.name == this.activity.name);
-        //     this.activity.id = activeId.id;
-        // })
         this.executionStart = true;
         let activityId = 0;
+        let activityName = "";
         this.stepService.getAllSteps().subscribe(step => {
             this.activityService.getAllActivities().subscribe(activity => {
                 activityId = activity.find(x => x.name == this.userId).id;
+                activityName = activity.find(x => x.name == this.userId).name;
+                this.activity.id = activityId;
+                this.activity.name = activityName;
                 this.stepList = step.filter(y => y.activityId == activityId);
             });
         })
     }
 
     updateProgress(event, step) {
+        debugger;
         if (event.currentTarget.checked) {
             this.activity.progressStep = step.id;
             this.activity.progressTreeState = step.stepSequence;

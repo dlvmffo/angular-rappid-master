@@ -70,97 +70,129 @@ export class TaskTrackComponent implements OnInit {
 
         let actX = 0;
         let actY = 50;
+
+
+        // draw for each user/activities:
+
+
         this.activityService.getAllActivities().subscribe((act) => {
+            let counterXBack = 0;
+            let isOrSplitTrue = false;
             act.forEach((a, i) => {
                 context.font = "11px Arial";
                 context.fillText(a.name, actX, actY);
-                this.stepService.getAllSteps().subscribe(step => {
-                    debugger;
+                this.stepService.getAllSteps().subscribe(stepInitial => {
+                    let step: Array<Step> = [];
+                    step = stepInitial.filter(x => x.activityId == a.id);
                     step.forEach((s,j) => {
                         if (s.stepSequence.includes('.')) {
-                            let divisor = s.stepSequence.split(".")[1];
-                            if (s.isAndSplit == true) {
-                                if (s.andSplitChosen == false) {
-                                   
-                                }
-                            }
-                            if (s.isOrSplit == true) {
-                                if (s.orConditionResult == true) {
-                                    
-                                }
-                            }
-
-                            if (divisor == "1") {
+                            if (s.isOrSplit && s.orConditionResult) {
+                                isOrSplitTrue = true;
                                 if (a.progressStep == s.id) {
-                                    this.draw_circle(x + xInc, y + yInc - 20, "token", "green");
-                                } else {
-                                    if (s.isAndSplit == true) {
-                                        if (s.andSplitChosen == true) {
-                                            this.draw_circle(x + xInc, y + yInc - 20, s.stepSequence, "yellow");
-                                        } else {
-                                            this.draw_circle(x + xInc, y + yInc - 20, s.stepSequence, "red");
-                                        }
-                                    }
-                                    if (s.isOrSplit == true) {
-                                        if (s.orConditionResult == true) {
-                                            this.draw_circle(x + xInc, y + yInc - 20, s.stepSequence, "yellow");
-                                        } else {
-                                            this.draw_circle(x + xInc, y + yInc - 20, s.stepSequence, "red");
-                                        }
-                                    }
+                                    this.draw_circle(x + xInc, y + yInc, "token", "green");
+                                }
+                                else if (a.progressStep < s.id) {
+                                    this.draw_circle(x + xInc, y + yInc, s.stepSequence, "white");
+                                } 
+                                else {
+                                    this.draw_circle(x + xInc, y + yInc, s.stepSequence, "yellow");
                                 }
                                 if (j !== step.length - 1) {
-                                    this.canvas_arrow(context, x+xInc+30, y+yInc, x+xInc+265, y+yInc);   
-                                }
-                            } else {
-                                if (a.progressStep == s.id) {
-                                    this.draw_circle(x + xInc - 150, y + yInc + 40, "token", "green");
-                                } else {
-                                    if (s.isAndSplit == true) {
-                                        if (s.andSplitChosen == true) {
-                                            this.draw_circle(x + xInc - 150, y + yInc + 50, s.stepSequence, "yellow");
-                                        } else {
-                                            this.draw_circle(x + xInc - 150, y + yInc + 50, s.stepSequence, "red");
-                                        }
-                                    }
-                                    if (s.isOrSplit == true) {
-                                        if (s.orConditionResult == true) {
-                                            this.draw_circle(x + xInc - 150, y + yInc + 50, s.stepSequence, "yellow");
-                                        } else {
-                                            this.draw_circle(x + xInc - 150, y + yInc + 50, s.stepSequence, "red");
-                                        }
-                                    }
-                                }
-                                if (j !== step.length - 1) {
-                                    this.canvas_arrow(context, x+xInc - 120, y+yInc+50, x+xInc+120, y+yInc+10);   
-                                }
-                                if (j !== step.length - 1) {
-                                    this.canvas_arrow(context, x+xInc - 270, y+yInc, x+xInc - 180, y+yInc+50);   
+                                    this.canvas_arrow(context, x+xInc+30, y+yInc, x+xInc+120, y+yInc);   
                                 }
                             }
-                            
-                           
-                            
+                            if (s.isOrSplit && !s.orConditionResult) {
+                                isOrSplitTrue = true;
+                                let divisor = s.stepSequence.split(".")[1];
+                                let secondDivisor = s.stepSequence.split(".")[2];
+                               
+                                if (divisor == "1") {
+                                    if (a.progressStep == s.id) {
+                                        this.draw_circle(x + xInc, y + yInc, "token", "green");
+                                    }
+                                    else if (a.progressStep < s.id) {
+                                        this.draw_circle(x + xInc, y + yInc, s.stepSequence, "white");
+                                    } 
+                                    else {
+                                        this.draw_circle(x + xInc, y + yInc, s.stepSequence, "yellow");
+                                    }
+                                    if (j !== step.length - 1) {
+                                        this.canvas_arrow(context, x+xInc+30, y+yInc, x+xInc+120, y+yInc);   
+                                    }
+                                    counterXBack++;
+                                } else {
+                                    if (secondDivisor == "1") {
+                                        this.canvas_arrow(context, x+xInc+30- 150*(counterXBack+1), y+yInc, x+xInc+30- 150*(counterXBack+1), y+yInc+70); 
+                                    }
+                                    if (a.progressStep == s.id) {
+                                        this.draw_circle(x + xInc - 150*counterXBack, y + yInc + 70, "token", "green");
+                                    }
+                                    else if (a.progressStep < s.id) {
+                                        this.draw_circle(x + xInc - 150*counterXBack, y + yInc + 70, s.stepSequence, "white");
+                                    } 
+                                    else {
+                                        this.draw_circle(x + xInc - 150*counterXBack, y + yInc + 70, s.stepSequence, "yellow");
+                                    }
+                                    if (j !== step.length - 1) {
+                                        this.canvas_arrow(context, x+xInc+30- 150*(counterXBack+1), y+yInc+70, x+xInc+120- 150*(counterXBack+1), y+yInc+70);   
+                                    }
+                                }
+                              
+                            }
+                            if (s.isAndSplit) {
+                                if (a.progressStep == s.id) {
+                                    this.draw_circle(x + xInc, y + yInc, "token", "green");
+                                }
+                                else if (a.progressStep < s.id) {
+                                    this.draw_circle(x + xInc, y + yInc, s.stepSequence, "white");
+                                } 
+                                else {
+                                    this.draw_circle(x + xInc, y + yInc, s.stepSequence, "yellow");
+                                }
+                                if (j !== step.length - 1) {
+                                    this.canvas_arrow(context, x+xInc+30, y+yInc, x+xInc+120, y+yInc);   
+                                }
+                            }
                         } else {
-                            if (a.progressStep == s.id) {
-                                this.draw_circle(x + xInc, y + yInc, "token", "green");
-                            } else {
-                                this.draw_circle(x + xInc, y + yInc, s.stepSequence, "yellow");
+                            if (isOrSplitTrue) {
+                                if (a.progressStep == s.id) {
+                                    this.draw_circle(x + xInc - 150*counterXBack, y + yInc, "token", "green");
+                                }
+                                else if (a.progressStep < s.id) {
+                                    this.draw_circle(x + xInc - 150*counterXBack, y + yInc, s.stepSequence, "white");
+                                } 
+                                else {
+                                    this.draw_circle(x + xInc - 150*counterXBack, y + yInc, s.stepSequence, "yellow");
+                                }
+                                if (j !== step.length - 1) {
+                                    this.canvas_arrow(context, x+xInc+30 - 150*counterXBack, y+yInc, x+xInc+120 - 150*counterXBack, y+yInc);   
+                                }
+                                this.canvas_arrow(context, x+xInc+30 - 150*(counterXBack+1), y+yInc+70, x+xInc+120 - 150*(counterXBack+1), y+yInc);
                             }
-                            if (j !== step.length - 1) {
-                                this.canvas_arrow(context, x+xInc+30, y+yInc, x+xInc+120, y+yInc);   
+                            else {
+                                if (a.progressStep == s.id) {
+                                    this.draw_circle(x + xInc, y + yInc, "token", "green");
+                                }
+                                else if (a.progressStep < s.id) {
+                                    this.draw_circle(x + xInc, y + yInc, s.stepSequence, "white");
+                                } 
+                                else {
+                                    this.draw_circle(x + xInc, y + yInc, s.stepSequence, "yellow");
+                                }
+                                if (j !== step.length - 1) {
+                                    this.canvas_arrow(context, x+xInc+30, y+yInc, x+xInc+120, y+yInc);   
+                                }
                             }
                         }
+                     
+                     
                         xInc = xInc + 150;
                     })
                     x = 100;
                     xInc = 0;
-                    yInc = yInc + 70;
+                    yInc = yInc + 170;
                 })
-                if (a.progressStep != 0 && a.progressStep != undefined) {
-
-                }
-                actY = actY + 70;
+                actY = actY + 170;
             })
         })
     }

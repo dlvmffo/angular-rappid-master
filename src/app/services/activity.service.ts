@@ -43,6 +43,7 @@ export class ActivityService {
     }
 
     public udpateActivity(activity: Activity): Observable<Activity> {
+        debugger;
         return this.http
             .put(API_URL + 'api/Activities/' + activity.id, activity).pipe(map(response => {
                 return response.json();
