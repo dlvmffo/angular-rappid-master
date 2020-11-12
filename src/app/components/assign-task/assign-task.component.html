@@ -1,18 +1,18 @@
-<div class="task-main-block">
-    <div>
-        <div>
-            <h3>Available Workflows:</h3>
+<div class="task-background">
+    <div class="task-main-block">
+        <div @explainerAnim>
+            <h3 class="col">Available Workflows:</h3>
             <div *ngFor="let workflow of workflowList; let i=index">
-                <div class="wf-block">
+                <div class="wf-block" class="col">
                     <input class="margin-right" (change)="getWorkflowSteps(workflow.id)" type="radio" name="workflow" id="i"> <span class="choose-workflow" >Choose Workflow</span>
                     <span class="margin-right">{{i+1}}.</span>
                     <span class="workflow-name">{{workflow.name}}</span>
                 </div>
             </div>
 
-            <div class="workflow-assign-block">
-                <div class="row" *ngIf="stepMainBranch.length > 0">
-                    <div class="col-md-4">
+            <div class="workflow-assign-block" class="col">
+                <div class="row" *ngIf="stepMainBranch.length > 0" @explainerAnim>
+                    <div class="col-md-4 col">
                         <h3>Main Branch</h3>
                         <div *ngFor="let main of stepMainBranch" [@flyInOut]="'in'" class="sub-block">
                             <span>{{main.stepSequence}}</span>)&nbsp;
@@ -20,7 +20,7 @@
                             <br>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 col">
                         <h5>Assign To:</h5>
                         <select class="select-activity" (change)="mainBranchAssign($event)">
                             <option>Select Assignee</option>
@@ -32,15 +32,15 @@
                
                 <hr>
 
-                <div class="row" *ngIf="stepAndFirstBranch.length > 0">
-                    <div class="col-md-4">
+                <div class="row" *ngIf="stepAndFirstBranch.length > 0" @explainerAnim>
+                    <div class="col-md-4 col">
                         <h3>And A-Split</h3>
                         <div *ngFor="let andFirst of stepAndFirstBranch" [@flyInOut]="'in'" class="sub-block">
                             <span>{{andFirst.stepSequence}}</span>)&nbsp;
                             <span>{{andFirst.name}}</span>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 col">
                         <h5>Assign To:</h5>
                         <select class="select-activity" (change)="andFirstBranchAssign($event)">
                             <option>Select Assignee</option>
@@ -51,15 +51,15 @@
 
                 <hr>
 
-                <div class="row" *ngIf="stepAndSecondBranch.length > 0">
-                    <div class="col-md-4">
+                <div class="row" *ngIf="stepAndSecondBranch.length > 0" @explainerAnim>
+                    <div class="col-md-4 col">
                         <h3>And B-Split</h3>
                         <div *ngFor="let andSecond of stepAndSecondBranch" [@flyInOut]="'in'" class="sub-block">
                             <span>{{andSecond.stepSequence}}</span>)&nbsp;
                             <span>{{andSecond.name}}</span>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 col">
                         <h5>Assign To:</h5>
                         <select class="select-activity" (change)="andSecondBranchAssign($event)">
                             <option>Select Assignee</option>
@@ -70,22 +70,22 @@
 
                 <hr>
 
-                <div class="row" *ngIf="stepOrFirstBranch.length > 0">
-                    <div class="col-md-4">
+                <div class="row" *ngIf="stepOrFirstBranch.length > 0" @explainerAnim>
+                    <div class="col-md-4 col">
                         <h3>Or A-Split</h3>
                         <div *ngFor="let orFirst of stepOrFirstBranch" [@flyInOut]="'in'" class="sub-block">
                             <span>{{orFirst.stepSequence}}</span>)&nbsp;
                             <span>{{orFirst.name}}</span>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 col">
                         <h5>Assign To:</h5>
                         <select class="select-activity" (change)="orFirstBranchAssign($event)">
                             <option>Select Assignee</option>
                             <option [value]="activity.id" *ngFor="let activity of activityList">{{activity.name}}</option>
                         </select>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 col">
                         <h5>Or A-Split Condition</h5>
                         <input type="text" [(ngModel)]="orACondition" (change)="orAConditionUpdate()">
                     </div>
@@ -93,22 +93,22 @@
 
                 <hr>
 
-                <div class="row" *ngIf="stepOrSecondBranch.length > 0">
-                    <div class="col-md-4">
+                <div class="row" *ngIf="stepOrSecondBranch.length > 0" @explainerAnim>
+                    <div class="col-md-4 col">
                         <h3>Or B-Split</h3>
                         <div *ngFor="let orSecond of stepOrSecondBranch" [@flyInOut]="'in'" class="sub-block">
                             <span>{{orSecond.stepSequence}}</span>)&nbsp;
                             <span>{{orSecond.name}}</span>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 col">
                         <h5>Assign To:</h5>
                         <select class="select-activity" (change)="orSecondBranchAssign($event)">
                             <option>Select Assignee</option>
                             <option [value]="activity.id" *ngFor="let activity of activityList">{{activity.name}}</option>
                         </select>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 col">
                         <h5>Or B-Split Condition</h5>
                         <input type=text [(ngModel)]="orBConditon" (change)="orBConditionUpdate()">
                     </div>

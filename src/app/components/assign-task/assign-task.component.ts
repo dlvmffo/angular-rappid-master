@@ -18,6 +18,15 @@ import { ActivityService } from 'src/app/services/activity.service';
           transition('* => void', [
             animate(100, style({ transform: 'translateX(100%)' }))
           ])
+        ]),
+        trigger('explainerAnim', [
+            transition('* => *', [
+                query('.col', style({ opacity: 0, transform: 'translate(-40px)' })),
+
+                query('.col', stagger('500ms', [
+                    animate('800ms 1.2s ease-out', style({ opacity: 1, transform: 'translateX(0)' }))
+                ]))
+            ])
         ])
       ]
 })
