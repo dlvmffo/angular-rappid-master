@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
+import { trigger, transition, animate, style, state, query, stagger } from '@angular/animations';
 import { StepService } from '../../services/step.service';
 import { WorkflowService } from '../../services/workflow.service';
 import { Activity, Step, Workflow } from '../../models/activity.model';
@@ -6,7 +7,19 @@ import { ActivityService } from 'src/app/services/activity.service';
 
 @Component({
     templateUrl: './assign-task.component.html',
-    styleUrls: ['./assign-task.component.css']
+    styleUrls: ['./assign-task.component.css'],
+    animations: [
+        trigger('flyInOut', [
+          state('in', style({ transform: 'translateX(0)' })),
+          transition('void => *', [
+            style({ transform: 'translateX(-100%)' }),
+            animate(100)
+          ]),
+          transition('* => void', [
+            animate(100, style({ transform: 'translateX(100%)' }))
+          ])
+        ])
+      ]
 })
 
 export class AssignTaskComponent implements OnInit {

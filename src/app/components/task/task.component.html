@@ -1,43 +1,48 @@
-<div class="row">
-    <div class="col-md-6">
-        <div class="task-form task" id="task-form">
-            <h3 style="margin-bottom: 20px;">Create New Tasks</h3>
-            <label class="margin-right">Workflow Name:</label>
-            <input type="text" [(ngModel)]="workflow.name">
-            <button class="margin-right btn-long" (click)="createWorkflow()">Create Workflow</button>
-            <ng-container *ngIf="showSteps">
-                <div class="conditions">
-                    <input type="checkbox" id="parent" value="parent" checked class="parent-node"
-                        (change)="parentNodeCheck($event)">ParentNode
-                    <input type="radio" name="andOrSplit" id="andSplit" value="andSplit" class="parent-node"
-                        (change)="parentNodeCheck($event)">And Split
-                    <input type="radio" name="andOrSplit" id="orSplit" value="orSplit" class="parent-node"
-                        (change)="parentNodeCheck($event)">Or Split
-                    <input type="checkbox" class="parent-node split-again" id="splitagain"
-                        (change)="parentNodeCheck($event)">Split Again
-                </div>
-                <br>
-                <input type="text" class="inputtext" [(ngModel)]="taskName" placeholder="Create New Task">
-                <button class="btn" id="btn" (click)="createTask()">+</button>
-    
-                <div *ngFor="let task of taskList; let i = index">
-                    <span *ngIf="i !== 0"><b class="step-sequence">{{task.stepSequence}}</b> {{task.taskName}}</span>
-                </div>
-            </ng-container>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="task-form task">
-            <h3 style="margin-bottom: 20px;">Create Users</h3>
-
-            <label class="margin-right">Username:</label>
-            <input type="text" [(ngModel)]="activity.name">
-            <button class="btn" id="btn" (click)="createUser()">+</button>
-
-            <div *ngFor="let act of activityList; let i = index;">
-                <span class="index-margin">{{i+1}}.</span>
-                <span>{{act.name}}</span>
+<div class="main-block">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="task-form task" id="task-form">
+                <h3 style="margin-bottom: 20px;">Create New Tasks</h3>
+                <label class="margin-right">Workflow Name:</label>
+                <input type="text" [(ngModel)]="workflow.name">
+                <button class="margin-right btn-long" (click)="createWorkflow()">Create Workflow</button>
+                <ng-container *ngIf="showSteps">
+                    <div class="conditions">
+                        <input type="checkbox" id="parent" value="parent" checked class="parent-node"
+                            (change)="parentNodeCheck($event)">ParentNode
+                        <input type="radio" name="andOrSplit" id="andSplit" value="andSplit" class="parent-node"
+                            (change)="parentNodeCheck($event)">And Split
+                        <input type="radio" name="andOrSplit" id="orSplit" value="orSplit" class="parent-node"
+                            (change)="parentNodeCheck($event)">Or Split
+                        <input type="checkbox" class="parent-node split-again" id="splitagain"
+                            (change)="parentNodeCheck($event)">Split Again
+                    </div>
+                    <br>
+                    <input type="text" class="inputtext" [(ngModel)]="taskName" placeholder="Create New Task">
+                    <button class="btn" id="btn" (click)="createTask()">+</button>
+        
+                    <div *ngFor="let task of taskList; let i = index" [@flyInOut]="'in'">
+                        <span *ngIf="i !== 0"><b class="step-sequence">{{task.stepSequence}}</b> {{task.taskName}}</span>
+                    </div>
+                </ng-container>
             </div>
+        </div>
+        <div class="col-md-6">
+            <div class="task-form task">
+                <h3 style="margin-bottom: 20px;">Create Users</h3>
+    
+                <label class="margin-right">Username:</label>
+                <input type="text" [(ngModel)]="activity.name">
+                <button class="btn" id="btn" (click)="createUser()">+</button>
+    
+                <div *ngFor="let act of activityList;  let i = index;">
+                    <span class="index-margin">{{i+1}}.</span>
+                    <span>{{act.name}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="assign-block">
+            <button id="assign-tasks" (click)="assignTasks()">Assign Tasks to Users</button>
         </div>
     </div>
 </div>

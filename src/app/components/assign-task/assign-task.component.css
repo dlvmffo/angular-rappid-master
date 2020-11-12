@@ -34,3 +34,10 @@
     margin-top: 30px;
     margin-bottom: 30px;
 }
+
+.sub-block {
+    padding: 10px 10px 10px 10px;
+    background-color: #22f4e4;
+    border: 1px solid gray;
+    margin-bottom: 10px;
+}

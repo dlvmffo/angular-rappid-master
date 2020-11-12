@@ -3,6 +3,14 @@ import { ActivityService } from 'src/app/services/activity.service';
 import { StepService } from 'src/app/services/step.service';
 import { WorkflowService } from 'src/app/services/workflow.service';
 import { Activity, Step, Workflow } from 'src/app/models/activity.model';
+import { Router } from '@angular/router';
+import {
+    trigger,
+    state,
+    style,
+    animate,
+    transition
+  } from '@angular/animations';
 declare var joint: any;
 declare var V: any;
 
@@ -14,7 +22,19 @@ interface TaskList {
 
 @Component({
     templateUrl: './task.component.html',
-    styleUrls: ['./task.component.css']
+    styleUrls: ['./task.component.css'],
+    animations: [
+        trigger('flyInOut', [
+          state('in', style({ transform: 'translateX(0)' })),
+          transition('void => *', [
+            style({ transform: 'translateX(-100%)' }),
+            animate(100)
+          ]),
+          transition('* => void', [
+            animate(100, style({ transform: 'translateX(100%)' }))
+          ])
+        ])
+      ]
 })
 
 export class TaskComponent implements OnInit, AfterViewChecked {
@@ -40,7 +60,8 @@ export class TaskComponent implements OnInit, AfterViewChecked {
     constructor(private cd: ChangeDetectorRef, 
         private activityService: ActivityService, 
         private stepService: StepService,
-        private workflowService: WorkflowService) {
+        private workflowService: WorkflowService,
+        private router: Router) {
     }
 
     ngOnInit() {
@@ -187,5 +208,9 @@ export class TaskComponent implements OnInit, AfterViewChecked {
             this.activity.name = '';
             this.loadActivities();
         });
+    }
+
+    assignTasks() {
+        this.router.navigate(['assign-task']);
     }
 }

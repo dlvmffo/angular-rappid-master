@@ -14,7 +14,7 @@
                 <div class="row" *ngIf="stepMainBranch.length > 0">
                     <div class="col-md-4">
                         <h3>Main Branch</h3>
-                        <div *ngFor="let main of stepMainBranch">
+                        <div *ngFor="let main of stepMainBranch" [@flyInOut]="'in'" class="sub-block">
                             <span>{{main.stepSequence}}</span>)&nbsp;
                             <span>{{main.name}}</span>
                             <br>
@@ -35,7 +35,7 @@
                 <div class="row" *ngIf="stepAndFirstBranch.length > 0">
                     <div class="col-md-4">
                         <h3>And A-Split</h3>
-                        <div *ngFor="let andFirst of stepAndFirstBranch">
+                        <div *ngFor="let andFirst of stepAndFirstBranch" [@flyInOut]="'in'" class="sub-block">
                             <span>{{andFirst.stepSequence}}</span>)&nbsp;
                             <span>{{andFirst.name}}</span>
                         </div>
@@ -54,7 +54,7 @@
                 <div class="row" *ngIf="stepAndSecondBranch.length > 0">
                     <div class="col-md-4">
                         <h3>And B-Split</h3>
-                        <div *ngFor="let andSecond of stepAndSecondBranch">
+                        <div *ngFor="let andSecond of stepAndSecondBranch" [@flyInOut]="'in'" class="sub-block">
                             <span>{{andSecond.stepSequence}}</span>)&nbsp;
                             <span>{{andSecond.name}}</span>
                         </div>
@@ -73,7 +73,7 @@
                 <div class="row" *ngIf="stepOrFirstBranch.length > 0">
                     <div class="col-md-4">
                         <h3>Or A-Split</h3>
-                        <div *ngFor="let orFirst of stepOrFirstBranch">
+                        <div *ngFor="let orFirst of stepOrFirstBranch" [@flyInOut]="'in'" class="sub-block">
                             <span>{{orFirst.stepSequence}}</span>)&nbsp;
                             <span>{{orFirst.name}}</span>
                         </div>
@@ -96,7 +96,7 @@
                 <div class="row" *ngIf="stepOrSecondBranch.length > 0">
                     <div class="col-md-4">
                         <h3>Or B-Split</h3>
-                        <div *ngFor="let orSecond of stepOrSecondBranch">
+                        <div *ngFor="let orSecond of stepOrSecondBranch" [@flyInOut]="'in'" class="sub-block">
                             <span>{{orSecond.stepSequence}}</span>)&nbsp;
                             <span>{{orSecond.name}}</span>
                         </div>
