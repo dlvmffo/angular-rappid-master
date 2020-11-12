@@ -6,11 +6,17 @@ import { TaskComponent } from './components/task/task.component';
 import { StepExecutionComponent } from './components/step-execution/step-execution.component';
 import { TaskTrackComponent } from './components/task-track/task-track.component';
 import { AssignTaskComponent } from './components/assign-task/assign-task.component';
+import { MainPageComponent } from './components/main-page/main-page.component';
 
 export const rootRouterConfig: Routes = [
   {
     path: '',
-    redirectTo: 'task',
+    redirectTo: 'main-page',
+    pathMatch: 'full'
+  },
+  {
+    path: 'main-page',
+    component: MainPageComponent,
     pathMatch: 'full'
   },
   {

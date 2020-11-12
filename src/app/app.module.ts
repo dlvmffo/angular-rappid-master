@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 
+import {MainPageComponent } from './components/main-page/main-page.component';
+
 import { AppComponent } from './app.component';
 import { OrgChartComponent } from "./components/org-chart/org-chart.component";
 import { TaskComponent } from "./components/task/task.component";
@@ -32,7 +34,8 @@ import { TempDataStorageService } from './services/temp-data-storage.service';
     TaskComponent,
     StepExecutionComponent,
     TaskTrackComponent,
-    AssignTaskComponent
+    AssignTaskComponent,
+    MainPageComponent
   ],
   imports: [
     BrowserModule,
