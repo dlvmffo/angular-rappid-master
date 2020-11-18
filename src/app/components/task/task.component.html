@@ -3,6 +3,20 @@
         <div class="header-block">
             <img class="wf-icon" src="../../../assets/wf-icon.png">
             <span class="header-title">Workflow Creation</span>
+            <div class="dropdown-block">
+                <div class="dropdown">
+                    <button class="dropbtn">
+                        <img class="menu-icon" src="../../../assets/menu.png">
+                    </button>
+                    <div class="dropdown-content">
+                        <a (click)="menuRoute('assign-task')">Assign Task</a>
+                        <a (click)="menuRoute('step-execution')">Step Execution</a>
+                        <a (click)="menuRoute('task')">Task Creation</a>
+                        <a (click)="menuRoute('task-track')">Task Track</a>
+                        <a (click)="menuRoute('overview')">Overview</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="row step-background child-block">
@@ -27,9 +41,10 @@
                     <input type="text" class="inputtext" [(ngModel)]="taskName" placeholder="Create New Task">
                     <button id="assign-tasks" (click)="createTask()">Create Workflow</button>
                     <button class="btn" id="btn" (click)="createTask()">+</button>
-        
+
                     <div *ngFor="let task of taskList; let i = index" [@flyInOut]="'in'">
-                        <span *ngIf="i !== 0"><b class="step-sequence">{{task.stepSequence}}</b> {{task.taskName}}</span>
+                        <span *ngIf="i !== 0"><b class="step-sequence">{{task.stepSequence}}</b>
+                            {{task.taskName}}</span>
                     </div>
                 </ng-container>
             </div>
@@ -40,7 +55,7 @@
                 <label class="margin-right">Username:</label>
                 <input type="text" [(ngModel)]="activity.name">
                 <button class="btn" id="btn" (click)="createUser()">+</button>
-    
+
                 <div *ngFor="let act of activityList;  let i = index;">
                     <span class="index-margin">{{i+1}}.</span>
                     <span>{{act.name}}</span>

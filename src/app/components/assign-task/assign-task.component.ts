@@ -171,4 +171,8 @@ export class AssignTaskComponent implements OnInit {
     public stepExecute() {
         this.router.navigate(['step-execution']);
     }
+
+    menuRoute(menu) {
+        this.router.navigate([menu]);
+    }
 }

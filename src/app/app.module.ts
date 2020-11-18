@@ -15,6 +15,7 @@ import { PetriNetsComponent } from "./components/petri-nets/petri-nets.component
 import { StepExecutionComponent } from "./components/step-execution/step-execution.component";
 import { TaskTrackComponent } from "./components/task-track/task-track.component";
 import { AssignTaskComponent } from './components/assign-task/assign-task.component';
+import { OverviewComponent } from './components/overview/overview.component';
 
 import { FormsModule } from "@angular/forms";
 
@@ -26,6 +27,8 @@ import { Step } from './models/activity.model';
 
 import { TempDataStorageService } from './services/temp-data-storage.service';
 
+import {IvyCarouselModule} from 'angular-responsive-carousel';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,13 +39,15 @@ import { TempDataStorageService } from './services/temp-data-storage.service';
     StepExecutionComponent,
     TaskTrackComponent,
     AssignTaskComponent,
-    MainPageComponent
+    MainPageComponent,
+    OverviewComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpModule,
     FormsModule,
+    IvyCarouselModule,
     RouterModule.forRoot(rootRouterConfig, { useHash: false })
   ],
   providers: [ActivityService, StepService, WorkflowService, TempDataStorageService],

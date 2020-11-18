@@ -7,6 +7,7 @@ import { StepExecutionComponent } from './components/step-execution/step-executi
 import { TaskTrackComponent } from './components/task-track/task-track.component';
 import { AssignTaskComponent } from './components/assign-task/assign-task.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
+import { OverviewComponent } from './components/overview/overview.component';
 
 export const rootRouterConfig: Routes = [
   {
@@ -52,6 +53,11 @@ export const rootRouterConfig: Routes = [
   {
     path: 'assign-task',
     component: AssignTaskComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'overview',
+    component: OverviewComponent,
     pathMatch: 'full'
   }
 ];

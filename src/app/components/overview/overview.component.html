@@ -1,0 +1,63 @@
+<video autoplay muted loop id="myVideo">
+    <source src="../../../assets/wf-nets.mp4" type="video/mp4">
+</video>
+<div class="gradient-header">
+    <div class="header-block">
+        <img class="wf-icon" src="../../../assets/wf-icon.png">
+        <span class="header-title">Overview</span>
+        <div class="dropdown-block">
+            <div class="dropdown">
+                <button class="dropbtn">
+                    <img class="menu-icon" src="../../../assets/menu.png">
+                </button>
+                <div class="dropdown-content">
+                    <a (click)="menuRoute('assign-task')">Assign Task</a>
+                    <a (click)="menuRoute('step-execution')">Step Execution</a>
+                    <a (click)="menuRoute('task')">Task Creation</a>
+                    <a (click)="menuRoute('task-track')">Task Track</a>
+                    <a (click)="menuRoute('overview')">Overview</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="child-block">
+    <div class="carousel-block">
+        <carousel [objectFit]="'cover'" [cellWidth]="'100%'" [height]="600" [borderRadius]="10" [autoplay]="true"
+            [dots]="true" [loop]="false">
+            <div class="carousel-cell">
+                <img src="../../../assets/process-flow-intro.PNG">
+            </div>
+            <div class="carousel-cell">
+                <img src="../../../assets/discrete-event-tracking.PNG">
+            </div>
+            <div class="carousel-cell">
+                <img src="../../../assets/cellular-automata.PNG">
+            </div>
+            <div class="carousel-cell">
+                <img src="../../../assets/finite-state-machines.PNG">
+            </div>
+            <div class="carousel-cell">
+                <img src="../../../assets/state-transition-table.PNG">
+            </div>
+            <div class="carousel-cell">
+                <img src="../../../assets/state-transition-diagram.PNG">
+            </div>
+            <div class="carousel-cell">
+                <img src="../../../assets/markov-modeling.PNG">
+            </div>
+            <div class="carousel-cell">
+                <img src="../../../assets/petri-net-intro.PNG">
+            </div>
+            <div class="carousel-cell">
+                <img src="../../../assets/workflow-nets.PNG">
+            </div>
+            <div class="carousel-cell">
+                <img src="../../../assets/wf-net-example.PNG">
+            </div>
+            <div class="carousel-cell" (click)="startSimulation()">
+                <img src="../../../assets/ot-simulation.PNG">
+            </div>
+        </carousel>
+    </div>
+</div>

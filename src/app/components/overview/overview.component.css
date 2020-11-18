@@ -1,6 +1,17 @@
-.task-collection {
-    margin-top: 100px;
-    margin-left: 100px;
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+  }
+
+.carousel-block {
+    margin-top: 34px;
+}
+
+.execute {
+    font-size: 1.2em;
 }
 
 .execute-step {
@@ -25,7 +36,7 @@
     color: white;
   }
 
-.gradient-header {
+  .gradient-header {
     background-image: linear-gradient(to right, #03090e , #22f4e4);
     height: 100px;
     position: fixed;
@@ -50,23 +61,7 @@
 }
 
 .child-block {
-    padding: 73px 30px 30px 30px;
-}
-
-.step-background {
-    background: url('../../../assets/surgeon.jpg') no-repeat center center fixed; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    padding: 100px 100px 100px 100px;
-    height: 2000px;
-}
-
-.execute-step {
-    margin-top: 30px;
-    margin-right: 30px;
-    float: right;
+    padding: 200px 30px 30px 30px;
 }
 
 /* Style The Dropdown Button */
@@ -126,7 +121,7 @@
     background-color:#22f4e4;
   }
 
-  .menu-icon {
-      height: 50px;
-      width: 50px;
-  }
+.menu-icon {
+    height: 50px;
+    width: 50px;
+}

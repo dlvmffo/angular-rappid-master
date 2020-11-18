@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { StepService } from 'src/app/services/step.service';
 import { ActivityService } from 'src/app/services/activity.service';
 import { Step, Activity } from 'src/app/models/activity.model';
+import { Router } from '@angular/router';
 
 @Component({
     templateUrl: 'task-track.component.html',
@@ -14,7 +15,7 @@ export class TaskTrackComponent implements OnInit {
     stepList: Array<Step>;
     activityList: Array<Activity>;
 
-    constructor(private stepService: StepService, private activityService: ActivityService, private elemRef: ElementRef) {
+    constructor(private stepService: StepService, private activityService: ActivityService, private elemRef: ElementRef, private router: Router) {
     }
 
     ngOnInit() {
@@ -25,6 +26,10 @@ export class TaskTrackComponent implements OnInit {
         this.activityService.getAllActivities().subscribe(activities => {
             this.activityList = activities;
         })
+    }
+
+    menuRoute(menu) {
+        this.router.navigate([menu]);
     }
 
     canvas_arrow(context, fromx, fromy, tox, toy) {

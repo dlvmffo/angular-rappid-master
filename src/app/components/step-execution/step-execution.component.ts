@@ -85,9 +85,9 @@ export class StepExecutionComponent implements OnInit {
         })
     }
 
-    taskTrack() {
-      this.router.navigate(['task-track']);
-    }
+    menuRoute(menu) {
+      this.router.navigate([menu]);
+  }
 
     startExecution() {
         this.executionStart = true;

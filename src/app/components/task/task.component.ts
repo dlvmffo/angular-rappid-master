@@ -95,6 +95,10 @@ export class TaskComponent implements OnInit, AfterViewChecked {
         });
     }
 
+    menuRoute(menu) {
+        this.router.navigate([menu]);
+    }
+
     public createWorkflow() {
         this.workflowService.createWorkflow(this.workflow).subscribe(workflow => {});
         this.showSteps = true;

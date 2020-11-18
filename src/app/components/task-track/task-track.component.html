@@ -9,13 +9,14 @@
                     <img class="menu-icon" src="../../../assets/menu.png">
                 </button>
                 <div class="dropdown-content">
-                  <a href="#">Assign Task</a>
-                  <a href="#">Step Execution</a>
-                  <a href="#">Task Creation</a>
+                    <a (click)="menuRoute('assign-task')">Assign Task</a>
+                    <a (click)="menuRoute('step-execution')">Step Execution</a>
+                    <a (click)="menuRoute('task')">Task Creation</a>
+                    <a (click)="menuRoute('task-track')">Task Track</a>
+                    <a (click)="menuRoute('overview')">Overview</a>
                 </div>
-              </div>
+            </div>
         </div>
-       
     </div>
 </div>
 <div class="child-block step-background">
@@ -24,7 +25,7 @@
             <div id="paper" class="paper"></div>
         </div>
     </div>
-    
+
     <div class="container">
         <canvas id="myCanvas" width="3000" height="1000"></canvas>
     </div>

@@ -2,7 +2,20 @@
     <div class="header-block">
         <img class="wf-icon" src="../../../assets/wf-icon.png">
         <span class="header-title">Assign Tasks</span>
-        <button class="step-execute" (click)="startExecution()">Track Task</button>
+        <div class="dropdown-block">
+            <div class="dropdown">
+                <button class="dropbtn">
+                    <img class="menu-icon" src="../../../assets/menu.png">
+                </button>
+                <div class="dropdown-content">
+                    <a (click)="menuRoute('assign-task')">Assign Task</a>
+                    <a (click)="menuRoute('step-execution')">Step Execution</a>
+                    <a (click)="menuRoute('task')">Task Creation</a>
+                    <a (click)="menuRoute('task-track')">Task Track</a>
+                    <a (click)="menuRoute('overview')">Overview</a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <div class="task-background child-block">
