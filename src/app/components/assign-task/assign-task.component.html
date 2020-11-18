@@ -21,6 +21,7 @@
 <div class="task-background child-block">
     <div class="task-main-block">
         <div @explainerAnim>
+            <button id="step-execute" class="btn-user" (click)="stepExecute()">Execute Tasks</button>
             <h3 class="col">Available Workflows:</h3>
             <div *ngFor="let workflow of workflowList; let i=index">
                 <div class="wf-block" class="col">
@@ -134,9 +135,6 @@
                     </div>
                 </div>
                 <hr>
-            </div>
-            <div class="step-execute-block">
-                <button id="step-execute" (click)="stepExecute()">Assign Tasks to Users</button>
             </div>
         </div>
     </div>

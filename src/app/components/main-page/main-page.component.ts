@@ -11,6 +11,6 @@ export class MainPageComponent {
 
     }
     startExecution() {
-        this.router.navigate(['task']);
+        this.router.navigate(['overview']);
     }
 }

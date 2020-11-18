@@ -130,3 +130,13 @@
       height: 50px;
       width: 50px;
   }
+
+  .sub-block {
+    padding: 10px 10px 10px 10px;
+    /* background-image: linear-gradient(to right, #1ed6c9 , white); */
+    border: 1px solid whitesmoke;
+    background-color: whitesmoke;
+    margin-bottom: 10px;
+    color: black;
+    border-radius: 4px;
+}
