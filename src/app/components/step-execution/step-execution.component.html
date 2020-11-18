@@ -1,40 +1,53 @@
-<div class="step-box">
-    User Id:
-    <input [(ngModel)]="userId" type="text">
-    <button class="btn-start" (click)="startExecution()">Start</button>
-    <div *ngIf="executionStart">
-        <div *ngFor="let step of stepList" class="step-body">
-            <div class="and-or-split">
-                <ng-container *ngIf="step.isAndSplit">
-                    <ng-container>
-                        <span class="margin-right" class="step-sequence"><b>{{step.stepSequence}}</b></span>
-                        <i class="margin-right">And Split:</i>
-                        <span *ngIf="step.splitSequence !== undefined" class="split-sequence margin-right"><b>{{step.splitSequence}}</b></span>
-                        <br>
-                        <span>{{step.name}}</span>
-                        <input class="checkbox" (change)="updateProgress($event, step)" type="checkbox">
-                    </ng-container>
-                </ng-container>
-                <ng-container *ngIf="step.isOrSplit">
-                    <span class="step-sequence margin-right"><b>{{step.stepSequence}}</b></span>
-                    <i class="margin-right">Or Split:</i>
-                    <span *ngIf="step.splitSequence !== undefined" class="split-sequence margin-right"><b>{{step.splitSequence}}</b></span>
-                    <span class="margin-right">{{step.orCondition}}</span>
-                    <input type="checkbox" [(ngModel)]="step.orConditionResult">
-                    <br>
-                    <span>{{step.name}}</span>
-                    <input class="checkbox" (change)="updateProgress($event, step)" type="checkbox">
-                </ng-container>
-                
-            </div>
-            <ng-container *ngIf="!step.isAndSplit">
-                <ng-container *ngIf="!step.isOrSplit">
-                    <span class="step-sequence"><b>{{step.stepSequence}}</b></span>
-                    <span>{{step.name}}</span>
-                    <input class="checkbox" (change)="updateProgress($event, step)" type="checkbox">
-                </ng-container>
-            </ng-container>
+<div class="gradient-header">
+    <div class="header-block">
+        <img class="wf-icon" src="../../../assets/wf-icon.png">
+        <span class="header-title">Execute Steps</span>
+        <button class="step-execute execute-step" (click)="taskTrack()">Track Task</button>
+    </div>
+</div>
+<div class="step-background child-block">
+    <div class="step-box" @explainerAnim>
+        <span class="execute">User Id:</span>&nbsp;
+        <input mdbInput class="execute" [(ngModel)]="userId" type="text">
+        <button class="step-execute execute" (click)="startExecution()">Start</button>
+        <div class="execute" *ngIf="executionStart">
+                <div *ngFor="let step of stepList" >
+                    <div @explainerAnim >
+                        <div class="and-or-split step-body execute">
+                            <ng-container *ngIf="step.isAndSplit">
+                                <ng-container>
+                                    <span class="margin-right" class="step-sequence"><b>{{step.stepSequence}}</b></span>
+                                    <i class="margin-right">And Split:</i>
+                                    <span *ngIf="step.splitSequence !== undefined" class="split-sequence margin-right"><b>{{step.splitSequence}}</b></span>
+                                    <br>
+                                    <span>{{step.name}}</span>
+                                    <input class="checkbox" (change)="updateProgress($event, step)" type="checkbox">
+                                </ng-container>
+                            </ng-container>
+                            <ng-container *ngIf="step.isOrSplit">
+                                <span class="step-sequence margin-right"><b>{{step.stepSequence}}</b></span>
+                                <i class="margin-right">Or Split:</i>
+                                <span *ngIf="step.splitSequence !== undefined" class="split-sequence margin-right"><b>{{step.splitSequence}}</b></span>
+                                <span class="margin-right">{{step.orCondition}}</span>
+                                <input type="checkbox" [(ngModel)]="step.orConditionResult">
+                                <br>
+                                <span>{{step.name}}</span>
+                                <input class="checkbox" (change)="updateProgress($event, step)" type="checkbox">
+                            </ng-container>
+                            
+                        </div>
+                        <ng-container *ngIf="!step.isAndSplit">
+                            <ng-container *ngIf="!step.isOrSplit">
+                                <div class="execute step-body">
+                                    <span class="step-sequence"><b>{{step.stepSequence}}</b></span>
+                                    <span>{{step.name}}</span>
+                                    <input class="checkbox" (change)="updateProgress($event, step)" type="checkbox">
+                                </div>
+                            </ng-container>
+                        </ng-container>
+                    </div>
+                </div>
+            <!-- <button class="btn-submit" (click)="submit()">Submit</button> -->
         </div>
-        <!-- <button class="btn-submit" (click)="submit()">Submit</button> -->
     </div>
 </div>

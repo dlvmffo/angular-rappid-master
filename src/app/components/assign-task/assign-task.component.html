@@ -1,4 +1,11 @@
-<div class="task-background">
+<div class="gradient-header">
+    <div class="header-block">
+        <img class="wf-icon" src="../../../assets/wf-icon.png">
+        <span class="header-title">Assign Tasks</span>
+        <button class="step-execute" (click)="startExecution()">Track Task</button>
+    </div>
+</div>
+<div class="task-background child-block">
     <div class="task-main-block">
         <div @explainerAnim>
             <h3 class="col">Available Workflows:</h3>
@@ -114,6 +121,9 @@
                     </div>
                 </div>
                 <hr>
+            </div>
+            <div class="step-execute-block">
+                <button id="step-execute" (click)="stepExecute()">Assign Tasks to Users</button>
             </div>
         </div>
     </div>

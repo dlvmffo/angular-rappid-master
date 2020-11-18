@@ -1,9 +1,31 @@
-<div style="margin-left: 188px; margin-top: 70px">
-    <div id="task-collection">
-        <div id="paper" class="paper"></div>
+<div class="gradient-header">
+    <div class="header-block">
+        <img class="wf-icon" src="../../../assets/wf-icon.png">
+        <span class="header-title">Execute Steps</span>
+        <!-- <button class="step-execute execute-step" (click)="taskTrack()">Track Task</button> -->
+        <div class="dropdown-block">
+            <div class="dropdown">
+                <button class="dropbtn">
+                    <img class="menu-icon" src="../../../assets/menu.png">
+                </button>
+                <div class="dropdown-content">
+                  <a href="#">Assign Task</a>
+                  <a href="#">Step Execution</a>
+                  <a href="#">Task Creation</a>
+                </div>
+              </div>
+        </div>
+       
     </div>
 </div>
-
-<div class="container">
-    <canvas id="myCanvas" width="3000" height="1000"></canvas>
+<div class="child-block step-background">
+    <div style="margin-left: 188px; margin-top: 70px">
+        <div id="task-collection">
+            <div id="paper" class="paper"></div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <canvas id="myCanvas" width="3000" height="1000"></canvas>
+    </div>
 </div>

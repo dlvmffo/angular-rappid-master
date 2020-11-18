@@ -1,9 +1,10 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { trigger, transition, animate, style, state, query, stagger } from '@angular/animations';
 import { StepService } from '../../services/step.service';
 import { WorkflowService } from '../../services/workflow.service';
 import { Activity, Step, Workflow } from '../../models/activity.model';
 import { ActivityService } from 'src/app/services/activity.service';
+import { Router } from '@angular/router';
 
 @Component({
     templateUrl: './assign-task.component.html',
@@ -71,7 +72,7 @@ export class AssignTaskComponent implements OnInit {
         this.orACondition = "";
         this.orBConditon = "";
     }
-    constructor(private stepService: StepService, private workflowService: WorkflowService, private activityService: ActivityService){}
+    constructor(private stepService: StepService, private workflowService: WorkflowService, private activityService: ActivityService, private router: Router){}
 
     loadWorkflow() {
         this.workflowService.getAllWorkflows().subscribe(workflow => {
@@ -165,5 +166,9 @@ export class AssignTaskComponent implements OnInit {
             step.orCondition = this.orBConditon;
             this.stepService.udpateStep(step).subscribe();
         })
+    }
+
+    public stepExecute() {
+        this.router.navigate(['step-execution']);
     }
 }

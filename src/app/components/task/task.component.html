@@ -1,11 +1,17 @@
 <div class="main-block">
-    <div class="row">
+    <div class="gradient-header">
+        <div class="header-block">
+            <img class="wf-icon" src="../../../assets/wf-icon.png">
+            <span class="header-title">Workflow Creation</span>
+        </div>
+    </div>
+    <div class="row step-background child-block">
         <div class="col-md-6">
             <div class="task-form task" id="task-form">
-                <h3 style="margin-bottom: 20px;">Create New Tasks</h3>
+                <h3 style="margin-bottom: 20px;color: gray; margin-top: 20px;">Create New Tasks</h3>
                 <label class="margin-right">Workflow Name:</label>
-                <input type="text" [(ngModel)]="workflow.name">
-                <button class="margin-right btn-long" (click)="createWorkflow()">Create Workflow</button>
+                <input type="text" [(ngModel)]="workflow.name">&nbsp;
+                <button id="assign-tasks" (click)="createWorkflow()">Create Workflow</button>
                 <ng-container *ngIf="showSteps">
                     <div class="conditions">
                         <input type="checkbox" id="parent" value="parent" checked class="parent-node"
@@ -19,6 +25,7 @@
                     </div>
                     <br>
                     <input type="text" class="inputtext" [(ngModel)]="taskName" placeholder="Create New Task">
+                    <button id="assign-tasks" (click)="createTask()">Create Workflow</button>
                     <button class="btn" id="btn" (click)="createTask()">+</button>
         
                     <div *ngFor="let task of taskList; let i = index" [@flyInOut]="'in'">
@@ -29,8 +36,7 @@
         </div>
         <div class="col-md-6">
             <div class="task-form task">
-                <h3 style="margin-bottom: 20px;">Create Users</h3>
-    
+                <h3 style="margin-bottom: 20px;color: gray">Create Users</h3>
                 <label class="margin-right">Username:</label>
                 <input type="text" [(ngModel)]="activity.name">
                 <button class="btn" id="btn" (click)="createUser()">+</button>

@@ -1,7 +1,18 @@
+.step-background {
+    background: url('../../../assets/surgeon.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    padding: 100px 100px 100px 100px;
+    height: 2000px;
+}
+
 .step-body {
     border: 1px solid gray;
     padding: 10px 10px 10px 10px;
     margin-top: 20px;
+    margin-right: 20px;
 }
 
 .step-box {
@@ -12,7 +23,7 @@
 }
 
 .checkbox {
-    margin-left: 750px;
+    margin-left: 700px;
     height: 20px;
     width: 20px;
 }
@@ -31,9 +42,9 @@
     margin-right: 20px;
 }
 
-.and-or-split {
+/* .and-or-split {
     margin-right: 20px;
-}
+} */
 
 .split-sequence {
     margin-left: 20px;
@@ -42,3 +53,83 @@
 .margin-right {
     margin-right: 10px;
 }
+
+.execute {
+    font-size: 1.2em;
+}
+
+.execute-step {
+    margin-top: 30px;
+    margin-right: 30px;
+    float: right;
+}
+
+.step-execute {
+    width: 200px;
+    font-size: 18px;
+    padding: 10px;
+    border: none;
+    background: white;
+    color: black;
+    cursor: pointer;
+    margin-left: 20px;
+  }
+  
+  .step-execute:hover {
+    background: #22f4e4;
+    color: white;
+  }
+
+  .gradient-header {
+    background-image: linear-gradient(to right, #03090e , #22f4e4);
+    height: 100px;
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+  }
+
+  .header-title {
+      font-size: 4em;
+      color: white;
+  }
+
+  .header-block {
+    margin-left: 30px;
+  }
+
+  .wf-icon {
+    height: 60px;
+    width: 61px;
+    margin-bottom: 38px;
+    margin-right: 28px;
+}
+
+.child-block {
+    padding: 73px 30px 30px 30px;
+}
+
+input[type=text], select {
+    /* width: 100%; */
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  input[type=submit] {
+    /* width: 100%; */
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  input[type=submit]:hover {
+    background-color: #45a049;
+  }
+  

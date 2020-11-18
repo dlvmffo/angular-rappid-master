@@ -134,3 +134,31 @@ input {
       margin-left: 1250px;
       margin-top: 100px;
   }
+
+  .gradient-header {
+    background-image: linear-gradient(to right, #03090e , #22f4e4);
+    height: 100px;
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+  }
+
+  .header-title {
+      font-size: 4em;
+      color: white;
+  }
+
+  .header-block {
+    margin-left: 30px;
+  }
+
+  .wf-icon {
+    height: 60px;
+    width: 61px;
+    margin-bottom: 38px;
+    margin-right: 28px;
+}
+
+.child-block {
+    padding: 30px 30px 30px 30px;
+}
