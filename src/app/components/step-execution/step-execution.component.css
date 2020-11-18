@@ -8,11 +8,26 @@
     height: 2000px;
 }
 
+.btn-user {
+  margin-right: 30px;
+  float: right;
+  margin-top: 85px;
+}
+
 .step-body {
-    border: 1px solid gray;
+    /* border: 1px solid gray;
     padding: 10px 10px 10px 10px;
     margin-top: 20px;
-    margin-right: 20px;
+    margin-right: 20px; */
+    padding: 10px 10px 10px 10px;
+    /* background-image: linear-gradient(to right, #1ed6c9 , white); */
+    border: 1px solid whitesmoke;
+    background-color: whitesmoke;
+    margin-bottom: 10px;
+    color: black;
+    border-radius: 4px;
+    width: 100%;
+    border-left: 10px solid #18a39b;
 }
 
 .step-box {
@@ -23,9 +38,10 @@
 }
 
 .checkbox {
-    margin-left: 700px;
+    float: right;
     height: 20px;
     width: 20px;
+    margin-top: 8px;
 }
 
 .btn-start {
@@ -74,6 +90,21 @@
     cursor: pointer;
     margin-left: 20px;
   }
+
+  #step-execute {
+    width: 200px;
+    font-size: 18px;
+    padding: 10px;
+    border: none;
+    background: white;
+    color: black;
+    cursor: pointer;
+  }
+  
+  #step-execute:hover {
+    background: #22f4e4;
+    color: white;
+  }
   
   .step-execute:hover {
     background: #22f4e4;
@@ -110,7 +141,7 @@
 
 input[type=text], select {
     /* width: 100%; */
-    padding: 12px 20px;
+    padding: 9px 20px;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
@@ -194,4 +225,9 @@ input[type=text], select {
       height: 50px;
       width: 50px;
   }
-  
+
+  .step-block {
+    margin-top: 30px;
+    width: 1162px;
+    margin-left: 210px;
+  }

@@ -19,11 +19,12 @@
     </div>
 </div>
 <div class="step-background child-block">
+    <button id="step-execute" class="btn-user" (click)="trackTask()">Track Tasks</button>
     <div class="step-box" @explainerAnim>
         <span class="execute">User Id:</span>&nbsp;
         <input mdbInput class="execute" [(ngModel)]="userId" type="text">
         <button class="step-execute execute" (click)="startExecution()">Start</button>
-        <div class="execute" *ngIf="executionStart">
+        <div class="execute step-block" *ngIf="executionStart">
             <div *ngFor="let step of stepList">
                 <div @explainerAnim>
                     <div class="and-or-split step-body execute">
