@@ -20,6 +20,7 @@
 </div>
 <div class="step-background child-block">
     <button id="step-execute" class="btn-user" (click)="trackTask()">Track Tasks</button>
+    <button id="step-execute" class="btn-user btn-new-user" (click)="anotherUser()">Join as another User</button>
     <div class="step-box" @explainerAnim>
         <span class="execute">User Id:</span>&nbsp;
         <input mdbInput class="execute" [(ngModel)]="userId" type="text">

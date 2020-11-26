@@ -85,6 +85,10 @@ export class StepExecutionComponent implements OnInit {
     })
   }
 
+  anotherUser() {
+    window.open('http://localhost:4200/step-execution');
+  }
+
   menuRoute(menu) {
     this.router.navigate([menu]);
   }

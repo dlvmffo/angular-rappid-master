@@ -23,37 +23,97 @@
 </div>
 <div class="child-block">
     <div class="carousel-block">
-        <carousel [objectFit]="'cover'" [cellWidth]="'100%'" [height]="600" [borderRadius]="10" [autoplay]="true"
+        <carousel [objectFit]="'cover'" [cellWidth]="'100%'" [height]="600" [borderRadius]="10" [autoplay]="false"
             [dots]="true" [loop]="false">
             <div class="carousel-cell">
-                <img src="../../../assets/process-flow-intro.PNG">
+                <span class="carousel-first-span">Let us paint a stepwise real world scenario of Operation Theater:</span><br>
+                <span class="carousel-first-span">First, Doctor Enters OR</span>
+                <span class="source-text">Source: pexels.com</span>
+                <video autoplay muted loop>
+                    <source src="../../../assets/doctor enters OR.mp4" type="video/mp4">
+                </video>
             </div>
             <div class="carousel-cell">
-                <img src="../../../assets/discrete-event-tracking.PNG">
+                <span class="carousel-first-span">Next, she Sterilizes herself</span>
+                <span class="source-text">Source: pexels.com</span>
+                <video autoplay muted loop>
+                    <source src="../../../assets/doctor sterilizes herself.mp4" type="video/mp4">
+                </video>
             </div>
             <div class="carousel-cell">
-                <img src="../../../assets/cellular-automata.PNG">
+                <span class="carousel-first-span">But at the same time, Nurse starts with sterilization of the environment</span>
+                <span class="source-text">Source: pexels.com</span>
+                <video autoplay muted loop>
+                    <source src="../../../assets/nurse sterilizes environment.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="carousel-cell">
+                <span class="carousel-first-span">After that, Nurse reads the Vitals of the Patient</span>
+                <span class="source-text">Source: pexels.com</span>
+                <video autoplay muted loop>
+                    <source src="../../../assets/nurse reads vitals.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="carousel-cell">
+                <span class="carousel-first-span">When Nurse finishes reading the vitals, Doctor takes a look on the vital situation</span>
+                <span class="source-text">Source: pexels.com</span>
+                <video autoplay muted loop>
+                    <source src="../../../assets/doctor reads vitals.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="carousel-cell">
+                <span class="carousel-first-span">If the vitals are okay, Doctor proceeds with the operation</span>
+                <span class="source-text">Source: pexels.com</span>
+                <video autoplay muted loop>
+                    <source src="../../../assets/doctor performs operation.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="carousel-cell">
+                <span class="carousel-first-span">But, if the vitals are critical, Doctor cancels the operation</span>
+                <span class="source-text">Source: pexels.com</span>
+                <video autoplay muted loop>
+                    <source src="../../../assets/doctor cancels OR.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="carousel-cell">
+                <span class="carousel-first-span">Finally, Doctor leaves the OR</span>
+                <span class="source-text">Source: pexels.com</span>
+                <video autoplay muted loop>
+                    <source src="../../../assets/doctor leaves OR.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="carousel-cell">
+                <img src="../../../assets/derive tasks.PNG">
+            </div>
+            <div class="carousel-cell">
+                <img src="../../../assets/process modelling.PNG">
             </div>
             <div class="carousel-cell">
                 <img src="../../../assets/finite-state-machines.PNG">
             </div>
             <div class="carousel-cell">
-                <img src="../../../assets/state-transition-table.PNG">
+                <img src="../../../assets/modelling through DFSM.PNG">
             </div>
             <div class="carousel-cell">
-                <img src="../../../assets/state-transition-diagram.PNG">
+                <img src="../../../assets/drawback of DFSM.PNG">
             </div>
             <div class="carousel-cell">
                 <img src="../../../assets/markov-modeling.PNG">
             </div>
             <div class="carousel-cell">
-                <img src="../../../assets/petri-net-intro.PNG">
+                <img src="../../../assets/drawback of Markov.PNG">
             </div>
             <div class="carousel-cell">
-                <img src="../../../assets/workflow-nets.PNG">
+                <img src="../../../assets/petri net.PNG">
             </div>
             <div class="carousel-cell">
-                <img src="../../../assets/wf-net-example.PNG">
+                <img src="../../../assets/modelling through petri net.PNG">
+            </div>
+            <div class="carousel-cell">
+                <img src="../../../assets/workflow net splits.PNG">
+            </div>
+            <div class="carousel-cell">
+                <img src="../../../assets/surgical workflow swimlane.PNG">
             </div>
             <div class="carousel-cell" (click)="startSimulation()">
                 <img src="../../../assets/ot-simulation.PNG">

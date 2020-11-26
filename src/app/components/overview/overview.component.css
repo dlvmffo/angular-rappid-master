@@ -6,6 +6,17 @@
     min-height: 100%;
   }
 
+  .carousel-first-span {
+    color: white;
+    margin-left: 400px;
+    font-size: 2em;
+  }
+
+  .source-text {
+    margin-left: 10px;
+    color: gray;
+  }
+
 .carousel-block {
     margin-top: 34px;
 }

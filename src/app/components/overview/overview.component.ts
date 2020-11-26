@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 
 export class OverviewComponent implements OnInit {
     public images;
+    public showIntro: Boolean;
 
     constructor(private router: Router) {
 
@@ -18,6 +19,7 @@ export class OverviewComponent implements OnInit {
             { path: '../../../assets/surgeon.jpg' },
             { path: '../../../assets/surgeon.jpg' }
         ]
+        this.showIntro = true;
     }
 
     menuRoute(menu) {
