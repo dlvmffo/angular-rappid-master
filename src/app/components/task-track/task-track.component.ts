@@ -20,11 +20,18 @@ export class TaskTrackComponent implements OnInit {
 
     ngOnInit() {
         this.createActivities();
+        this.loadSteps();
     }
 
     loadActivity() {
         this.activityService.getAllActivities().subscribe(activities => {
             this.activityList = activities;
+        })
+    }
+
+    loadSteps() {
+        this.stepService.getAllSteps().subscribe(steps => {
+            this.stepList = steps;
         })
     }
 
@@ -103,7 +110,8 @@ export class TaskTrackComponent implements OnInit {
                                     this.draw_circle(x + xInc, y + yInc, s.stepSequence, "yellow");
                                 }
                                 if (j !== step.length - 1) {
-                                    this.canvas_arrow(context, x+xInc+30, y+yInc, x+xInc+120, y+yInc);   
+                                                                                    //120
+                                    this.canvas_arrow(context, x+xInc+30, y+yInc, x+xInc+270, y+yInc);
                                 }
                                 counterXBack++;
                             }

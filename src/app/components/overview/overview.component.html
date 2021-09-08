@@ -26,22 +26,26 @@
         <carousel [objectFit]="'cover'" [cellWidth]="'100%'" [height]="600" [borderRadius]="10" [autoplay]="false"
             [dots]="true" [loop]="false">
             <div class="carousel-cell">
-                <span class="carousel-first-span">Let us paint a stepwise real world scenario of Operation Theater:</span><br>
+                <video autoplay muted loop>
+                    <source src="../../../assets/surgical workflow intro.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="carousel-cell">
                 <span class="carousel-first-span">First, Doctor Enters OR</span>
                 <span class="source-text">Source: pexels.com</span>
-                <video autoplay muted loop>
+                <video autoplay muted loop> 
                     <source src="../../../assets/doctor enters OR.mp4" type="video/mp4">
                 </video>
             </div>
             <div class="carousel-cell">
-                <span class="carousel-first-span">Next, she Sterilizes herself</span>
+                <span class="carousel-second-span">Next, she disinfects herself</span>
                 <span class="source-text">Source: pexels.com</span>
                 <video autoplay muted loop>
                     <source src="../../../assets/doctor sterilizes herself.mp4" type="video/mp4">
                 </video>
             </div>
             <div class="carousel-cell">
-                <span class="carousel-first-span">But at the same time, Nurse starts with sterilization of the environment</span>
+                <span class="carousel-first-span">But at the same time, Nurse starts with disinfection of the environment</span>
                 <span class="source-text">Source: pexels.com</span>
                 <video autoplay muted loop>
                     <source src="../../../assets/nurse sterilizes environment.mp4" type="video/mp4">
@@ -62,7 +66,7 @@
                 </video>
             </div>
             <div class="carousel-cell">
-                <span class="carousel-first-span">If the vitals are okay, Doctor proceeds with the operation</span>
+                <span class="carousel-sixth-span">If the vitals are okay, Doctor proceeds with the operation</span>
                 <span class="source-text">Source: pexels.com</span>
                 <video autoplay muted loop>
                     <source src="../../../assets/doctor performs operation.mp4" type="video/mp4">
@@ -114,6 +118,18 @@
             </div>
             <div class="carousel-cell">
                 <img src="../../../assets/surgical workflow swimlane.PNG">
+            </div>
+            <div class="carousel-cell">
+                <img src="../../../assets/surgical overview workflows.png">
+            </div>
+            <div class="carousel-cell">
+                <img src="../../../assets/surgical doctor vital stable workflow.png">
+            </div>
+            <div class="carousel-cell">
+                <img src="../../../assets/surgical doctor vital unstable workflow.png">
+            </div>
+            <div class="carousel-cell">
+                <img src="../../../assets/surgical nurse workflow.png">
             </div>
             <div class="carousel-cell" (click)="startSimulation()">
                 <img src="../../../assets/ot-simulation.PNG">

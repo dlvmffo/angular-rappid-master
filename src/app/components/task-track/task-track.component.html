@@ -20,13 +20,27 @@
     </div>
 </div>
 <div class="child-block step-background">
-    <div style="margin-left: 188px; margin-top: 270px">
-        <div id="task-collection">
-            <div id="paper" class="paper"></div>
+    <div style="margin-top: 100px">
+        <div class="container">
+            <canvas id="myCanvas" width="1000" height="300"></canvas>
         </div>
-    </div>
-
-    <div class="container">
-        <canvas id="myCanvas" width="3000" height="300"></canvas>
+        <div class="legend-box">
+            <h3 class="legend-header">Legend:</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Steps Overview</h4>
+                    <div *ngFor="let step of stepList" class="step-sequence-block">
+                        <span>{{step.stepSequence}}</span>)&nbsp;
+                        <span>{{step.name}}</span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="circleBase white"></div><span class="circle-definiton-block">Steps remaining to be completed</span><br>
+                    <div class="circleBase yellow"></div><span class="circle-definiton-block">Steps completed</span><br>
+                    <div class="circleBase red"></div><span class="circle-definiton-block">Steps not taken in OR branch</span><br>
+                    <div class="circleBase green"></div><span class="circle-definiton-block">Token</span>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

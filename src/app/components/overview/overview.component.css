@@ -12,6 +12,18 @@
     font-size: 2em;
   }
 
+  .carousel-second-span {
+    color: white;
+    margin-left: 700px;
+    font-size: 2em;
+  }
+
+  .carousel-sixth-span {
+    color: white;
+    margin-left: 500px;
+    font-size: 2em;
+  }
+
   .source-text {
     margin-left: 10px;
     color: gray;

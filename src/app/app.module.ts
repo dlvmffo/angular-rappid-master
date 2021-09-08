@@ -6,11 +6,9 @@ import { HttpModule } from '@angular/http';
 import {MainPageComponent } from './components/main-page/main-page.component';
 
 import { AppComponent } from './app.component';
-import { OrgChartComponent } from "./components/org-chart/org-chart.component";
 import { TaskComponent } from "./components/task/task.component";
 import { RouterModule } from "@angular/router";
 import { rootRouterConfig } from "./app.routing";
-import { LineBuilderComponent } from "./components/line-builder/line-builder.component";
 import { PetriNetsComponent } from "./components/petri-nets/petri-nets.component";
 import { StepExecutionComponent } from "./components/step-execution/step-execution.component";
 import { TaskTrackComponent } from "./components/task-track/task-track.component";
@@ -32,8 +30,6 @@ import {IvyCarouselModule} from 'angular-responsive-carousel';
 @NgModule({
   declarations: [
     AppComponent,
-    OrgChartComponent,
-    LineBuilderComponent,
     PetriNetsComponent,
     TaskComponent,
     StepExecutionComponent,
