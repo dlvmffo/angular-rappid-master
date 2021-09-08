@@ -1,26 +1,15 @@
-# JointJS
+# Workflow Nets
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.0.
 
-## Dependencies:
-`npm install lodash@3.10.1 --save`
+## Running the project
+`npm install`
 
-`npm install backbone --save`
+`ng serve`
 
-`npm i jquery --save`
+run on 
 
-Include in angular.json:
+`chrome.exe --user-data-dir="C://Chrome dev session" --disable-web-security`
 
-    <!-- Rappid/JointJS dependencies: -->
-    "styles": [
-          "src/styles.css",
-           "src/vendor/css/rappid.css"
-      ],
-      "scripts": [
-           "node_modules/jquery/dist/jquery.js",
-           "node_modules/lodash/index.js",
-           "node_modules/backbone/backbone-min.js",
-            "src/vendor/js/rappid.js"
-      ]
+to avoid CORS issue while connecting to backend
 
-           "node_modules/lodash/lodash.js",  if newest version
