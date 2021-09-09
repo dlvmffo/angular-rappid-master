@@ -182,7 +182,7 @@ export class TaskComponent implements OnInit, AfterViewChecked {
         let value = event.currentTarget.value;
         let checked = event.currentTarget.checked;
         if (value == "parent" && !checked) {
-            $("#andSplit").trigger('click');
+            (document.getElementById("andSplit") as any).trigger('click');
             if (value == "andSplit" && checked) {
                 this.step.isAndSplit = true;
                 this.step.isOrSplit = false;
