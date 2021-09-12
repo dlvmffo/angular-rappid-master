@@ -70,7 +70,7 @@ input {
 
 .task {
     margin-top: 100px;
-    margin-left: 90px;
+    margin-bottom: 20px;
 }
 
 .inputtext {
@@ -168,6 +168,7 @@ input {
 
 .child-block {
     padding: 30px 30px 30px 30px;
+    margin-right: 0px !important;
 }
 
 /* Style The Dropdown Button */
@@ -275,6 +276,10 @@ input {
 
 .sub-block-user {
     width: 50%;
+}
+
+.background-blur {
+  background-color: rgba(255,255,255,0.5)
 }
 
 

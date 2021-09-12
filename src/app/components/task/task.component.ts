@@ -56,6 +56,9 @@ export class TaskComponent implements OnInit, AfterViewChecked {
 
     public counter: number;
     public showSteps: boolean;
+    public disableAndSplit = true;
+    public disableOrSplit = true;
+    public disableSplitAgain = true;
 
     constructor(private cd: ChangeDetectorRef, 
         private activityService: ActivityService, 
@@ -105,6 +108,7 @@ export class TaskComponent implements OnInit, AfterViewChecked {
     }
 
     public createTask() {
+        this.disableAndSplit = this.disableOrSplit = this.disableSplitAgain = false;
         this.step.workflowId = 1; //this.counter
         this.counter++;
         let parent = document.getElementById("parent");
