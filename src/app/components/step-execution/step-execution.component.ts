@@ -57,6 +57,7 @@ export class StepExecutionComponent implements OnInit {
   public userId: string;
   public executionStart: boolean;
   public stepListLength: number;
+  public orStepDisable = false;
 
   constructor(private stepService: StepService, private activityService: ActivityService, private tempDataStorageService: TempDataStorageService, private router: Router) {
 
@@ -102,6 +103,7 @@ export class StepExecutionComponent implements OnInit {
     let activityId = 0;
     let activityName = "";
     this.stepService.getAllSteps().subscribe(step => {
+      console.log('steps: ', step);
       this.stepListLength = step.length;
       this.activityService.getAllActivities().subscribe(activity => {
         activityId = activity.find(x => x.name == this.userId).id;
@@ -109,12 +111,38 @@ export class StepExecutionComponent implements OnInit {
         this.activity.id = activityId;
         this.activity.name = activityName;
         this.stepList = step.filter(y => y.activityId == activityId);
+        this.stepList.forEach((stepListObj, i) => {
+          setTimeout(() => {
+            let checkDiv = document.getElementById(`checkbox${i}`);
+            if (checkDiv && stepListObj.isCompleted) {
+              (checkDiv as any).checked = true;
+              (checkDiv as any).disabled = true;
+            }
+            if (stepListObj.isOrSplit && stepListObj.orConditionResult) {
+              let orConditionCheck = document.getElementsByClassName(`orConditionCheck`);
+              Array.prototype.forEach.call(orConditionCheck, function(el) {
+                el.disabled = true;
+              });
+            } 
+          }, 200);
+        });
       });
     })
   }
 
+  checkOrCondition() {
+    let orConditionCheck = document.getElementsByClassName(`orConditionCheck`);
+    Array.prototype.forEach.call(orConditionCheck, function(el) {
+      el.disabled = true;
+    });
+  }
+
   updateProgress(event, step) {
     if (event.currentTarget.checked) {
+      let checkDiv = document.getElementById(`checkbox${step.id - 1}`);
+      if (checkDiv) {
+        (checkDiv as any).disabled = true;
+      }
       this.activity.progressStep = step.id;
       this.activity.progressTreeState = step.stepSequence;
       this.step = step;

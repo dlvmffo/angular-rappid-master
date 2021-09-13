@@ -26,7 +26,7 @@
         <input mdbInput class="execute" [(ngModel)]="userId" type="text">
         <button class="step-execute execute" (click)="startExecution()">Start</button>
         <div class="execute step-block" *ngIf="executionStart">
-            <div *ngFor="let step of stepList">
+            <div *ngFor="let step of stepList; let i = index">
                 <div @explainerAnim>
                     <div class="and-or-split step-body execute">
                         <ng-container *ngIf="step.isAndSplit">
@@ -37,7 +37,7 @@
                                     class="split-sequence margin-right"><b>{{step.splitSequence}}</b></span>
                                 <br>
                                 <span>{{step.name}}</span>
-                                <input class="checkbox" (change)="updateProgress($event, step)" type="checkbox">
+                                <input class="checkbox" id="checkbox{{i}}" (change)="updateProgress($event, step)" type="checkbox">
                             </ng-container>
                         </ng-container>
                         <ng-container *ngIf="step.isOrSplit">
@@ -46,10 +46,10 @@
                             <span *ngIf="step.splitSequence !== undefined"
                                 class="split-sequence margin-right"><b>{{step.splitSequence}}</b></span>
                             <span class="margin-right">{{step.orCondition}}</span>
-                            <input type="checkbox" [(ngModel)]="step.orConditionResult">
+                            <input type="checkbox" (change)="checkOrCondition()" class="orConditionCheck" [(ngModel)]="step.orConditionResult">
                             <br>
                             <span>{{step.name}}</span>
-                            <input class="checkbox" (change)="updateProgress($event, step)" type="checkbox">
+                            <input class="checkbox" id="checkbox{{i}}" (change)="updateProgress($event, step)" type="checkbox">
                         </ng-container>
 
                     </div>
@@ -58,7 +58,7 @@
                             <div class="execute step-body">
                                 <span class="step-sequence"><b>{{step.stepSequence}}</b></span>
                                 <span>{{step.name}}</span>
-                                <input class="checkbox" (change)="updateProgress($event, step)" type="checkbox">
+                                <input class="checkbox" id="checkbox{{i}}" (change)="updateProgress($event, step)" type="checkbox">
                             </div>
                         </ng-container>
                     </ng-container>
