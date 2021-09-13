@@ -118,9 +118,16 @@ export class TaskComponent implements OnInit, AfterViewChecked {
             this.step.stepId = Math.floor(this.taskList[this.taskList.length - 1].stepId) + 1;
             this.step.isOrSplit, this.step.isAndSplit = false;
             this.step.stepSequenceCounter = 1;
+            this.disableOrSplit = this.disableAndSplit = false;
         } else {
-            if ((orSplit as any).checked) { this.step.isOrSplit = true; }
-            if ((andSplit as any).checked) { this.step.isAndSplit = true; }
+            if ((orSplit as any).checked) { 
+                this.step.isOrSplit = true;
+                this.disableAndSplit = true;
+            }
+            if ((andSplit as any).checked) {
+                this.step.isAndSplit = true;
+                this.disableOrSplit = true;
+            }
             // this.step.parentId =this.taskList[this.taskList.length -1].stepNumber;
             this.step.stepId = this.taskList[this.taskList.length - 1].stepId + 0.1;
             this.step.stepId = parseFloat(this.step.stepId.toFixed(2));

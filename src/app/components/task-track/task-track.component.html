@@ -21,8 +21,30 @@
 </div>
 <div class="child-block step-background">
     <div style="margin-top: 100px">
-        <div class="container">
+        <!-- <div class="container">
             <canvas id="myCanvas" width="1000" height="300"></canvas>
+        </div> -->
+        <div class="flex-wrap" *ngFor="let actor of stepListWithActors">
+            <span class="user-title">User {{actor[0].user}}'s progress:</span>
+            <span *ngFor="let step of actor; let i=index" class="circle"
+                [ngClass]="{
+                    'green': step.color === 'green',
+                    'white': step.color === 'white',
+                    'yellow': step.color === 'yellow',
+                    'red': step.color === 'red',
+                    'push-down': step.divisor === '2',
+                    'push-right': step.divisor === '2' && i !== 0,
+                    'continue-right': step.secondDivisor === '2'
+                }">
+                <span>
+                    {{step.steps.stepSequence}}
+                </span>
+                <hr *ngIf="i !== actor.length - 1"
+                    [ngClass]="{
+                        'hr-slanted-right': step.divisor === '2' && i !== 0
+                    }">
+                <div *ngIf="step.divisor === '2' && i !== 0 && step.secondDivisor !== '2'" class="vl"></div>
+            </span>
         </div>
         <div class="legend-box">
             <h3 class="legend-header">Legend:</h3>

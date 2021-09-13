@@ -254,7 +254,6 @@ export class PetriNetsComponent implements OnInit {
     }
 
     public simulate() {
-        debugger;
         var that = this;
 
         var transitions = [this.buffer, this.cAccept, this.cAccepted, this.cConsume, this.cReady];
