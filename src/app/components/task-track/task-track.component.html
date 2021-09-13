@@ -25,7 +25,7 @@
             <canvas id="myCanvas" width="1000" height="300"></canvas>
         </div> -->
         <div class="flex-wrap" *ngFor="let actor of stepListWithActors">
-            <span class="user-title">User {{actor[0].user}}'s progress:</span>
+            <span class="user-title">{{actor[0].user}}'s progress:</span>
             <span *ngFor="let step of actor; let i=index" class="circle"
                 [ngClass]="{
                     'green': step.color === 'green',
