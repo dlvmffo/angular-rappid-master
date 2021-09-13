@@ -22,7 +22,7 @@
     <button id="step-execute" class="btn-user" (click)="trackTask()">Track Tasks</button>
     <button id="step-execute" class="btn-user btn-new-user" (click)="anotherUser()">Join as another User</button>
     <div class="step-box" @explainerAnim>
-        <span class="execute">User Id:</span>&nbsp;
+        <span class="execute">User Name:</span>&nbsp;
         <input mdbInput class="execute" [(ngModel)]="userId" type="text">
         <button class="step-execute execute" (click)="startExecution()">Start</button>
         <div class="execute step-block" *ngIf="executionStart">
