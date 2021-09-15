@@ -4,6 +4,7 @@ import { StepService } from 'src/app/services/step.service';
 import { WorkflowService } from 'src/app/services/workflow.service';
 import { Activity, Step, Workflow } from 'src/app/models/activity.model';
 import { Router } from '@angular/router';
+import {ToastaService, ToastaConfig, ToastOptions, ToastData} from 'ngx-toasta';
 import {
     trigger,
     state,
@@ -11,6 +12,7 @@ import {
     animate,
     transition
   } from '@angular/animations';
+import { values } from 'underscore';
 declare var joint: any;
 declare var V: any;
 
@@ -60,11 +62,20 @@ export class TaskComponent implements OnInit, AfterViewChecked {
     public disableOrSplit = true;
     public disableSplitAgain = true;
 
+    public showInputField = false;
+
+    public nodeClickInfo = '';
+    public stepsList: Array<Step> = [];
+    public editedStepInfo: Step = <Step>{};
+    public editStepShow = false;
+
     constructor(private cd: ChangeDetectorRef, 
         private activityService: ActivityService, 
         private stepService: StepService,
         private workflowService: WorkflowService,
-        private router: Router) {
+        private router: Router,
+        private toastaService:ToastaService, private toastaConfig: ToastaConfig) {
+            this.toastaConfig.theme = 'material';
     }
 
     ngOnInit() {
@@ -107,24 +118,63 @@ export class TaskComponent implements OnInit, AfterViewChecked {
         this.showSteps = true;
     }
 
+    editStep() {
+        this.editStepShow = false;
+        this.stepService.udpateStep(this.editedStepInfo).subscribe((step) => {
+            alert('Successfully edited');
+            this.stepService.getAllSteps().subscribe(steps => {
+                this.stepsList = steps;
+            });
+        })
+        this.editedStepInfo = <Step>{};
+    }
+
+    getStepForEdit(id: number) {
+        this.editStepShow = true;
+        this.stepService.getStepById(id).subscribe((step) => {
+            this.editedStepInfo = step;
+        })
+    }
+
+    deleteStep(id: number) {
+        var toastOptions:ToastOptions = {
+            title: "My title",
+            msg: "The message",
+            showClose: true,
+            timeout: 5000,
+            theme: 'default',
+            onAdd: (toast:ToastData) => {
+                console.log('Toast ' + toast.id + ' has been added!');
+            },
+            onRemove: function(toast:ToastData) {
+                console.log('Toast ' + toast.id + ' has been removed!');
+            }
+        };
+        this.stepService.deleteStepById(id).subscribe(() => {
+            this.toastaService.success(toastOptions);
+            alert('successfully deleted');
+            this.stepService.getAllSteps().subscribe(steps => {
+                this.stepsList = steps;
+            });
+        });
+    }
+
     public createTask() {
+        this.showInputField = false;
         this.disableAndSplit = this.disableOrSplit = this.disableSplitAgain = false;
         this.step.workflowId = 1; //this.counter
         this.counter++;
-        let parent = document.getElementById("parent");
-        let orSplit = document.getElementById("orSplit");
-        let andSplit = document.getElementById("andSplit");
-        if ((parent as any).checked) {
+        if (this.nodeClickInfo === 'parent') {
             this.step.stepId = Math.floor(this.taskList[this.taskList.length - 1].stepId) + 1;
             this.step.isOrSplit, this.step.isAndSplit = false;
             this.step.stepSequenceCounter = 1;
             this.disableOrSplit = this.disableAndSplit = false;
         } else {
-            if ((orSplit as any).checked) { 
+            if (this.nodeClickInfo === 'orSplit') { 
                 this.step.isOrSplit = true;
                 this.disableAndSplit = true;
             }
-            if ((andSplit as any).checked) {
+            if (this.nodeClickInfo === 'andSplit') {
                 this.step.isAndSplit = true;
                 this.disableOrSplit = true;
             }
@@ -137,7 +187,7 @@ export class TaskComponent implements OnInit, AfterViewChecked {
             parseInt(stepIdToSequence) + 1;
 
             var splitagain = document.getElementById("splitagain");
-            if ((splitagain as any).checked == true) {
+            if (this.nodeClickInfo === 'splitAgain') {
                 this.step.stepSequenceCounter = this.step.stepSequenceCounter + 1;
                 (splitagain as any).checked = false;
                 let newTaskList = [];
@@ -164,6 +214,9 @@ export class TaskComponent implements OnInit, AfterViewChecked {
         this.step.isCompleted = false;
         this.stepService.createStep(this.step).subscribe(step => {
             this.loadActivities();
+            this.stepService.getAllSteps().subscribe(steps => {
+                this.stepsList = steps;
+            });
         })
         this.taskName = "";
     }
@@ -190,30 +243,8 @@ export class TaskComponent implements OnInit, AfterViewChecked {
     }
 
     parentNodeCheck(event) {
-        let value = event.currentTarget.value;
-        let checked = event.currentTarget.checked;
-        if (value == "parent" && !checked) {
-            (document.getElementById("andSplit") as any).trigger('click');
-            if (value == "andSplit" && checked) {
-                this.step.isAndSplit = true;
-                this.step.isOrSplit = false;
-            }
-            if (value == "orSplit" && checked) {
-                this.step.isAndSplit = false;
-                this.step.isOrSplit = true;
-            }
-        }
-        if (value == "parent" && checked) {
-            (document.getElementById("andSplit") as any).checked = false;
-            (document.getElementById("orSplit") as any).checked = false;
-            this.step.isAndSplit, this.step.isOrSplit = false;
-        }
-        if ((value == "andSplit" || value == "orSplit") && checked) {
-            (document.getElementById("parent") as any).checked = false;
-        }
-        if (value == "splitAgain" && checked) {
-
-        }
+        this.nodeClickInfo = event;
+        this.showInputField = true;
     }
 
     createUser() {

@@ -26,6 +26,7 @@ import { Step } from './models/activity.model';
 import { TempDataStorageService } from './services/temp-data-storage.service';
 
 import {IvyCarouselModule} from 'angular-responsive-carousel';
+import {ToastaModule} from 'ngx-toasta';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import {IvyCarouselModule} from 'angular-responsive-carousel';
     TaskTrackComponent,
     AssignTaskComponent,
     MainPageComponent,
-    OverviewComponent
+    OverviewComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,8 +45,10 @@ import {IvyCarouselModule} from 'angular-responsive-carousel';
     HttpModule,
     FormsModule,
     IvyCarouselModule,
+    ToastaModule.forRoot(),
     RouterModule.forRoot(rootRouterConfig, { useHash: false })
   ],
+  exports: [BrowserModule, ToastaModule],
   providers: [ActivityService, StepService, WorkflowService, TempDataStorageService],
   bootstrap: [AppComponent]
 })

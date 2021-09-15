@@ -78,8 +78,12 @@ export class StepService {
     }
 
     // DELETE /todos/:id
-    public deleteStepById(todoId: number) {
+    public deleteStepById(activityId: number) {
         // will use this.http.delete()
+        return this.http
+        .delete(API_URL + 'api/Steps/' + activityId).pipe(map(response => {
+            return response.json();
+        }))
     }
 
     public getUrlWithDomain(url: string) {

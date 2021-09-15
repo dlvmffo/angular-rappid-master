@@ -27,24 +27,29 @@
                 <input type="text" [(ngModel)]="workflow.name">&nbsp;
                 <button id="assign-tasks" (click)="createWorkflow()">Create Workflow</button>
                 <ng-container *ngIf="showSteps">
-                    <div *ngFor="let task of taskList; let i = index" [@flyInOut]="'in'" class="sub-block">
-                        <span *ngIf="i !== 0"><b class="step-sequence">{{task.stepSequence}}</b>
-                            {{task.taskName}}</span>
+                    <div *ngIf="editStepShow">
+                        <span class="edit-block">{{editedStepInfo.stepSequence}})</span>
+                        <input class="edit-block" [(ngModel)]="editedStepInfo.name" type="text"/>
+                        <button class="btn-conditions edit-btn" (click)="editStep()">Edit</button>
+                    </div>
+                    <div *ngFor="let step of stepsList; let i = index" [@flyInOut]="'in'" class="sub-block">
+                        <span class="step-name"><b class="step-sequence">{{step.stepSequence}}</b>
+                            {{step.name}}</span>
+                        <i (click)="deleteStep(step.id)" data-toggle="tooltip" data-placement="top" title="delete" class="fa fa-trash fa-1x font-icon"></i>
+                        <i (click)="getStepForEdit(step.id)" data-toggle="tooltip" data-placement="top" title="edit" class="fa fa-edit fa-1x font-icon"></i>    
                     </div>
                     <div class="conditions">
-                        <input type="checkbox" id="parent" value="parent" checked class="parent-node"
-                            (change)="parentNodeCheck($event)">ParentNode
+                        <button (click)="parentNodeCheck('parent')"  id="parent" value="parent" class="btn-conditions">Create Parent Node <i  class="fa fa-plus fa-1x plus-icon"></i></button>
+                        <button (click)="parentNodeCheck('andSplit')" id="andSplit" value="andSplit" class="btn-conditions">Create Parallel Split <i  class="fa fa-plus fa-1x plus-icon"></i></button>
+                        <button (click)="parentNodeCheck('orSplit')" id="orSplit" value="orSplit" class="btn-conditions">Create Conditional Split <i  class="fa fa-plus fa-1x plus-icon"></i></button>
+                        <button (click)="parentNodeCheck('splitAgain')" id="splitagain" value="splitAgain" class="btn-conditions">Split Again <i  class="fa fa-plus fa-1x plus-icon"></i></button>
                         <br>
-                        <input type="radio" name="andOrSplit" id="andSplit" value="andSplit" class="parent-node"
-                            (change)="parentNodeCheck($event)" [disabled]="disableAndSplit">Create Parallel Split
-                        <input type="radio" name="andOrSplit" id="orSplit" value="orSplit" class="parent-node"
-                            (change)="parentNodeCheck($event)" [disabled]="disableOrSplit">Create Conditional Split
-                        <input type="checkbox" class="parent-node split-again" id="splitagain"
-                            (change)="parentNodeCheck($event)" [disabled]="disableSplitAgain">Split Again
                     </div>
                     <br>
-                    <input type="text" class="inputtext" [(ngModel)]="taskName" placeholder="Create New Task">
-                    <button class="btn btn-plus" id="btn" (click)="createTask()" data-toggle="tooltip" data-placement="top" title="Click to create task">+</button>
+                    <div *ngIf="showInputField">
+                        <input type="text" class="inputtext" [(ngModel)]="taskName" placeholder="Create New Task">
+                        <button class="btn btn-plus" id="btn" (click)="createTask()" data-toggle="tooltip" data-placement="top" title="Click to create task">+</button>
+                    </div>
 
                 </ng-container>
             </div>
@@ -68,3 +73,4 @@
         </div>
     </div>
 </div>
+<ngx-toasta [position]="'top-center'"></ngx-toasta>
