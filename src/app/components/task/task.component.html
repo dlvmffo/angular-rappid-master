@@ -39,14 +39,16 @@
                         <i (click)="getStepForEdit(step.id)" data-toggle="tooltip" data-placement="top" title="edit" class="fa fa-edit fa-1x font-icon"></i>    
                     </div>
                     <div class="conditions">
-                        <button (click)="parentNodeCheck('parent')"  id="parent" value="parent" class="btn-conditions">Create Parent Node <i  class="fa fa-plus fa-1x plus-icon"></i></button>
-                        <button (click)="parentNodeCheck('andSplit')" id="andSplit" value="andSplit" class="btn-conditions">Create Parallel Split <i  class="fa fa-plus fa-1x plus-icon"></i></button>
-                        <button (click)="parentNodeCheck('orSplit')" id="orSplit" value="orSplit" class="btn-conditions">Create Conditional Split <i  class="fa fa-plus fa-1x plus-icon"></i></button>
-                        <button (click)="parentNodeCheck('splitAgain')" id="splitagain" value="splitAgain" class="btn-conditions">Split Again <i  class="fa fa-plus fa-1x plus-icon"></i></button>
+                        <button (click)="parentNodeCheck('parent')"  class="btn-conditions">Create Parent Node <i  class="fa fa-plus fa-1x plus-icon"></i></button>
+                        <button (click)="parentNodeCheck('andSplit')" class="btn-conditions">Create Parallel Split <i  class="fa fa-plus fa-1x plus-icon"></i></button>
+                        <button (click)="parentNodeCheck('orSplit')" class="btn-conditions">Create Conditional Split <i  class="fa fa-plus fa-1x plus-icon"></i></button>
+                        <button (click)="parentNodeCheck('splitAgain')" class="btn-conditions">Split Again <i  class="fa fa-plus fa-1x plus-icon"></i></button>
+                        <button (click)="parentNodeCheck('continue')" class="btn-conditions">Continue with Series <i  class="fa fa-plus fa-1x plus-icon"></i></button>
                         <br>
                     </div>
                     <br>
                     <div *ngIf="showInputField">
+                        <span class="edit-block">{{stepTemp.stepSequence}})</span>
                         <input type="text" class="inputtext" [(ngModel)]="taskName" placeholder="Create New Task">
                         <button class="btn btn-plus" id="btn" (click)="createTask()" data-toggle="tooltip" data-placement="top" title="Click to create task">+</button>
                     </div>

@@ -116,14 +116,14 @@ export class StepExecutionComponent implements OnInit {
             let checkDiv = document.getElementById(`checkbox${i}`);
             if (checkDiv && stepListObj.isCompleted) {
               (checkDiv as any).checked = true;
-              (checkDiv as any).disabled = true;
+              // (checkDiv as any).disabled = true;
             }
-            if (stepListObj.isOrSplit && stepListObj.orConditionResult) {
-              let orConditionCheck = document.getElementsByClassName(`orConditionCheck`);
-              Array.prototype.forEach.call(orConditionCheck, function(el) {
-                el.disabled = true;
-              });
-            } 
+            // if (stepListObj.isOrSplit && stepListObj.orConditionResult) {
+            //   let orConditionCheck = document.getElementsByClassName(`orConditionCheck`);
+            //   Array.prototype.forEach.call(orConditionCheck, function(el) {
+            //     el.disabled = true;
+            //   });
+            // } 
           }, 200);
         });
       });
@@ -140,9 +140,9 @@ export class StepExecutionComponent implements OnInit {
   updateProgress(event, step) {
     if (event.currentTarget.checked) {
       let checkDiv = document.getElementById(`checkbox${step.id - 1}`);
-      if (checkDiv) {
-        (checkDiv as any).disabled = true;
-      }
+      // if (checkDiv) {
+      //   (checkDiv as any).disabled = true;
+      // }
       this.activity.progressStep = step.id;
       this.activity.progressTreeState = step.stepSequence;
       this.step = step;

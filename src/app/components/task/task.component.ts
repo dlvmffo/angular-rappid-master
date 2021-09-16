@@ -51,7 +51,8 @@ export class TaskComponent implements OnInit, AfterViewChecked {
     public activityList: Array<Activity>;
     public activity: Activity; 
     public stepList: Array<Step>;
-    public step: Step;
+    public step: Step = <Step>{};
+    public stepTemp: Step = <Step>{};
 
     public taskList: Array<TaskList>;
     public workflow: Workflow;
@@ -68,6 +69,8 @@ export class TaskComponent implements OnInit, AfterViewChecked {
     public stepsList: Array<Step> = [];
     public editedStepInfo: Step = <Step>{};
     public editStepShow = false;
+
+    public andORClickSave = '';
 
     constructor(private cd: ChangeDetectorRef, 
         private activityService: ActivityService, 
@@ -160,59 +163,15 @@ export class TaskComponent implements OnInit, AfterViewChecked {
     }
 
     public createTask() {
-        this.showInputField = false;
-        this.disableAndSplit = this.disableOrSplit = this.disableSplitAgain = false;
-        this.step.workflowId = 1; //this.counter
-        this.counter++;
-        if (this.nodeClickInfo === 'parent') {
-            this.step.stepId = Math.floor(this.taskList[this.taskList.length - 1].stepId) + 1;
-            this.step.isOrSplit, this.step.isAndSplit = false;
-            this.step.stepSequenceCounter = 1;
-            this.disableOrSplit = this.disableAndSplit = false;
-        } else {
-            if (this.nodeClickInfo === 'orSplit') { 
-                this.step.isOrSplit = true;
-                this.disableAndSplit = true;
-            }
-            if (this.nodeClickInfo === 'andSplit') {
-                this.step.isAndSplit = true;
-                this.disableOrSplit = true;
-            }
-            // this.step.parentId =this.taskList[this.taskList.length -1].stepNumber;
-            this.step.stepId = this.taskList[this.taskList.length - 1].stepId + 0.1;
-            this.step.stepId = parseFloat(this.step.stepId.toFixed(2));
-        }
-        if ((this.step.stepId).toString().includes('.')) {
-            let stepIdToSequence = (this.step.stepId).toString().split('.')[1];
-            parseInt(stepIdToSequence) + 1;
+        this.showInputField = true;
+        this.stepTemp.workflowId = 1; //this.counter
 
-            var splitagain = document.getElementById("splitagain");
-            if (this.nodeClickInfo === 'splitAgain') {
-                this.step.stepSequenceCounter = this.step.stepSequenceCounter + 1;
-                (splitagain as any).checked = false;
-                let newTaskList = [];
-                let currentStep = this.step.stepSequence.split('.')[0];
-                this.taskList.forEach(ta => {
-                    if (ta.stepSequence.split('.')[0] == currentStep) {
-                        newTaskList.push(ta);
-                    }
-                })
-                let newTaskListCount = newTaskList.length - 1;
-                this.step.stepId = this.step.stepId - (newTaskListCount/10);
-                stepIdToSequence = "1";
-            }
-            
-            this.step.stepSequence = this.step.stepId.toString().split(".")[0] + "." + this.step.stepSequenceCounter + "." + stepIdToSequence;
-        } else {
-            this.step.stepSequence = this.step.stepId.toString();
-        }
-
-        this.taskList.push({ taskName: this.taskName, stepId: this.step.stepId, stepSequence: this.step.stepSequence });
+        this.taskList.push({ taskName: this.taskName, stepId: this.stepTemp.stepId, stepSequence: this.stepTemp.stepSequence });
         
-        this.step.name = this.taskName;
+        this.stepTemp.name = this.taskName;
         this.taskName = "";
-        this.step.isCompleted = false;
-        this.stepService.createStep(this.step).subscribe(step => {
+        this.stepTemp.isCompleted = false;
+        this.stepService.createStep(this.stepTemp).subscribe(step => {
             this.loadActivities();
             this.stepService.getAllSteps().subscribe(steps => {
                 this.stepsList = steps;
@@ -243,8 +202,58 @@ export class TaskComponent implements OnInit, AfterViewChecked {
     }
 
     parentNodeCheck(event) {
-        this.nodeClickInfo = event;
+        debugger;
+        if (event === 'andSplit' || event === 'orSplit') {
+            this.andORClickSave = event;
+        }
+        if (event === 'continue') {
+            this.nodeClickInfo = this.andORClickSave;
+        } else {
+            this.nodeClickInfo = event;
+        }
         this.showInputField = true;
+
+        this.counter++;
+        if (this.nodeClickInfo === 'parent') {
+            this.stepTemp.stepId = Math.floor(this.taskList[this.taskList.length - 1].stepId) + 1;
+            this.stepTemp.isOrSplit = this.stepTemp.isAndSplit = false;
+            this.stepTemp.stepSequenceCounter = 1;
+            this.disableOrSplit = this.disableAndSplit = false;
+        } else {
+            if (this.nodeClickInfo === 'orSplit') { 
+                this.stepTemp.isOrSplit = true;
+                this.disableAndSplit = true;
+            }
+            if (this.nodeClickInfo === 'andSplit') {
+                this.stepTemp.isAndSplit = true;
+                this.disableOrSplit = true;
+            }
+            // this.step.parentId =this.taskList[this.taskList.length -1].stepNumber;
+            this.stepTemp.stepId = this.taskList[this.taskList.length - 1].stepId + 0.1;
+            this.stepTemp.stepId = parseFloat(this.stepTemp.stepId.toFixed(2));
+        }
+        if ((this.stepTemp.stepId).toString().includes('.')) {
+            let stepIdToSequence = (this.stepTemp.stepId).toString().split('.')[1];
+            parseInt(stepIdToSequence) + 1;
+
+            if (this.nodeClickInfo === 'splitAgain') {
+                this.stepTemp.stepSequenceCounter = this.stepTemp.stepSequenceCounter + 1;
+                let newTaskList = [];
+                let currentStep = this.stepTemp.stepSequence.split('.')[0];
+                this.taskList.forEach(ta => {
+                    if (ta.stepSequence.split('.')[0] == currentStep) {
+                        newTaskList.push(ta);
+                    }
+                })
+                let newTaskListCount = newTaskList.length - 1;
+                this.stepTemp.stepId = this.stepTemp.stepId - (newTaskListCount/10);
+                stepIdToSequence = "1";
+            }
+            
+            this.stepTemp.stepSequence = this.stepTemp.stepId.toString().split(".")[0] + "." + this.stepTemp.stepSequenceCounter + "." + stepIdToSequence;
+        } else {
+            this.stepTemp.stepSequence = this.stepTemp.stepId.toString();
+        }
     }
 
     createUser() {
